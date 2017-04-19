@@ -14,7 +14,7 @@ public class StateClose implements State {
 
 	@Override
 	public void saveAccount() throws MyOwnException {
-		// TODO Auto-generated method stub
+		throw new MyOwnException("Account already closed");
 
 	}
 

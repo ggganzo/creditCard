@@ -73,7 +73,7 @@ public class CreditFacade {
 	}
 
 	public void createAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
-			LocalDate pStartDate, LocalDate pEndDate, long pInterestRate) {
+			LocalDate pStartDate, LocalDate pEndDate, long pInterestRate) throws MyOwnException {
 
 		CreditCardAccount ccAccount = new CreditCardAccount(pCustNo, pCardNumber, pCardName, pAccountNo, pCcy,
 				pStartDate, pEndDate, pInterestRate);
@@ -108,7 +108,7 @@ public class CreditFacade {
 		// TODO send notification
 	}
 
-	public void repayment(String pAccountNo, BigDecimal pAmount, String TranDesc) {
+	public void repayment(String pAccountNo, BigDecimal pAmount, String TranDesc) throws MyOwnException {
 
 		CreditCardAccount pCcAccount = getCCAccountDetail(pAccountNo);
 		pCcAccount.repayment(pAmount, TranDesc);

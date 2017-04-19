@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import creditcard.model.CreditCardAccount;
+import financialcore.general.MyOwnException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -45,7 +46,7 @@ public class AccountCreateController implements Initializable {
 	Stage stage;
 
 	@FXML
-	public void saveAction() {
+	public void saveAction() throws MyOwnException {
 
 		if (txtAccountNo.getText().length() == 0 || txtCardNo.getText().length() == 0
 				|| txtCardName.getText().length() == 0) {

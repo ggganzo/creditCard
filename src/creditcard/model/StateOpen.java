@@ -16,8 +16,9 @@ public class StateOpen implements State {
 	}
 
 	@Override
-	public void saveAccount() {
-		// TODO Auto-generated method stub
+	public void saveAccount() throws MyOwnException {
+
+		account.updateAccount();
 
 	}
 

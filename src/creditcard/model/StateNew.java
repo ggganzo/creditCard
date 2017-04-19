@@ -13,6 +13,8 @@ public class StateNew implements State {
 
 	@Override
 	public void saveAccount() throws MyOwnException {
+		account.createAccount();
+
 		account.createBalances();
 	}
 
