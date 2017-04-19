@@ -3,6 +3,7 @@ package financialcore.interfaces;
 import java.util.HashMap;
 
 import financialcore.account.Balance;
+import financialcore.general.MyOwnException;
 
 public interface AccountI {
 
@@ -10,6 +11,8 @@ public interface AccountI {
 
 	public void addBalanceToHashMap(Balance b);
 
-	public void saveAccount();
+	public void createAccount() throws MyOwnException;
+
+	public void updateAccount() throws MyOwnException;
 
 }

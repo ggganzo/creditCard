@@ -134,12 +134,15 @@ public class Account implements AccountI {
 	}
 
 	@Override
-	public void saveAccount() {
-		if (getStatus().compareTo("NEW") == 0) {
+	public void createAccount() throws MyOwnException {
 
-		} else if (getStatus().compareTo("OPENED") == 0) {
+		// dbAccess.INSTANCE.getDatastore().save(this.account);
+		// TODO Auto-generated method stub
 
-		}
+	}
+
+	@Override
+	public void updateAccount() throws MyOwnException {
 
 		// dbAccess.INSTANCE.getDatastore().save(this.account);
 		// TODO Auto-generated method stub
