@@ -2,16 +2,16 @@ package financialcore.account;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+/*
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
-
-@Entity(value = "transaction")
+*/
+//@Entity(value = "transaction")
 public class Transaction {
-	@Id
+	/*@Id
 	private ObjectId id;
-
+*/
 	private int tranNo;
 	private int accountNo;
 	private String balanceCode;
@@ -38,27 +38,27 @@ public class Transaction {
 		this.description = description;
 	}
 
-	public ObjectId getId() {
+	/*public ObjectId getId() {
 		return id;
 	}
 
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
-
-	public int getTranNo() {
+*/
+	public int getTransactionNumber() {
 		return tranNo;
 	}
 
-	public void setTranNo(int tranNo) {
+	public void setTransactionNumber(int tranNo) {
 		this.tranNo = tranNo;
 	}
 
-	public int getAccountNo() {
+	public int getAccountNumber() {
 		return accountNo;
 	}
 
-	public void setAccountNo(int accountNo) {
+	public void setAccountNumber(int accountNo) {
 		this.accountNo = accountNo;
 	}
 

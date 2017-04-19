@@ -1,28 +1,32 @@
 package financialcore.account;
 
 import java.math.BigDecimal;
-
+/*
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
-
+*/
 import financialcore.config.Sequence;
-import financialcore.db.dbAccess;
+//import financialcore.db.dbAccess;
 
 /**
  * Created by ganzo on 4/13/17.
  */
-@Entity(value = "balance")
+//@Entity(value = "balance")
 public class Balance {
 
-	@Id
-	private ObjectId id;
+	//@Id
+	//private ObjectId id;
 
 	private int accountNo;
 
 	private String balanceCode;
 	private BigDecimal balance;
-
+	
+	public Balance(){
+		
+	}
+/*
 	public ObjectId getId() {
 		return id;
 	}
@@ -30,12 +34,12 @@ public class Balance {
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
-
-	public int getAccountNo() {
+*/
+	public int getAccountNumber() {
 		return accountNo;
 	}
 
-	public void setAccountNo(int accountNo) {
+	public void setAccountNumber(int accountNo) {
 		this.accountNo = accountNo;
 	}
 
@@ -52,7 +56,7 @@ public class Balance {
 	}
 
 	public Balance(int pAccountNo, String pBalanceCode, BigDecimal pBalance) {
-		this.setAccountNo(pAccountNo);
+		this.setAccountNumber(pAccountNo);
 		this.setBalanceCode(pBalanceCode);
 		this.setBalance(pBalance);
 	}
@@ -66,15 +70,15 @@ public class Balance {
 		this.setBalance(this.getBalance().add(pTranAmount));
 
 		Transaction t = new Transaction();
-		t.setAccountNo(pAccountNo);
+		t.setAccountNumber(pAccountNo);
 		t.setBalanceCode(this.getBalanceCode());
 		t.setAmount(pTranAmount);
 		t.setType("INC");
 		t.setTranCode(pTranCode);
 		t.setDescription(pTranDesc);
-		t.setTranNo(Sequence.getTranNo());
+		t.setTransactionNumber(Sequence.getTranNo());
 
-		dbAccess.INSTANCE.getDatastore().save(t);
+		//dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
 
@@ -82,15 +86,15 @@ public class Balance {
 		this.setBalance(this.getBalance().subtract(pTranAmount));
 
 		Transaction t = new Transaction();
-		t.setAccountNo(pAccountNo);
+		t.setAccountNumber(pAccountNo);
 		t.setBalanceCode(this.getBalanceCode());
 		t.setAmount(pTranAmount);
 		t.setType("DEC");
 		t.setTranCode(pTranCode);
 		t.setDescription(pTranDesc);
-		t.setTranNo(Sequence.getTranNo());
+		t.setTransactionNumber(Sequence.getTranNo());
 
-		dbAccess.INSTANCE.getDatastore().save(t);
+		//dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
 }
