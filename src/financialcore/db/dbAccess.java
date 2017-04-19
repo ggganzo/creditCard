@@ -1,14 +1,14 @@
 package financialcore.db;
-
+/*
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
-import com.mongodb.MongoClient;
+import com.mongodb.MongoClient;*/
 import financialcore.config.*;
 
 public enum dbAccess {
 
-	INSTANCE;
+	/*INSTANCE;
 
 	private MongoClient mClient = null;
 	private Datastore ds;
@@ -35,5 +35,5 @@ public enum dbAccess {
 	public Datastore getDatastore() {
 		return ds;
 	}
-
+*/
 }
