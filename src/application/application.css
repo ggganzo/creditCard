@@ -1,0 +1,12 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.my-menu-button{
+	-fx-background-color: #475660;
+	-fx-background-radius: 0 0 0 0;
+	-fx-text-alignment: center;
+	-fx-text-fill: #BDC0CA;
+	-fx-border-width: 0 0 1 0; -fx-border-color: #BDC0CA;
+	-fx-pref-height: 35;
+	-fx-pref-width: 122;
+	-fx-font-weight: bold;
+}

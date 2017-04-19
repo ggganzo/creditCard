@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="195.0" layoutY="56.0" text="Welcome" textFill="#333431">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+      <Text layoutX="59.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is such a wonderful world to live with books, so keep reading everyone." wrappingWidth="497.7294921875" />
+      <Text layoutX="59.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is such a wonderful world to live with books, so keep reading everyone." wrappingWidth="497.7294921875" />
+      <Text layoutX="60.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is such a wonderful world to live with books, so keep reading everyone." wrappingWidth="497.7294921875" />
+      <Text layoutX="59.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is such a wonderful world to live with books, so keep reading everyone." wrappingWidth="497.7294921875" />
+   </children>
+</Pane>
