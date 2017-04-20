@@ -15,7 +15,7 @@ public class CreditCardAccount extends Account {
 
 	private String cardNumber;
 	private String cardName;
-	private int accountNo;
+	private int accountNumber;
 
 	private State stateNew;
 	private State stateOpened;
@@ -72,11 +72,11 @@ public class CreditCardAccount extends Account {
 	}
 
 	public int getAccountNo() {
-		return accountNo;
+		return accountNumber;
 	}
 
 	public void setAccountNo(int accountNo) {
-		this.accountNo = accountNo;
+		this.accountNumber = accountNo;
 	}
 
 	public CreditCardAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
@@ -86,7 +86,7 @@ public class CreditCardAccount extends Account {
 
 		cardNumber = pCardNumber;
 		cardName = pCardName;
-		accountNo = pAccountNo;
+		accountNumber = pAccountNo;
 
 		stateNew = new StateNew(this);
 		stateOpened = new StateOpen(this);

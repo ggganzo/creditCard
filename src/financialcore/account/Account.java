@@ -54,15 +54,25 @@ public class Account extends AbstractElement implements AccountI {
 		this.type = type;
 	}
 
+	@Override
 	public HashMap<String, Balance> getBalanceHashMap() {
 		return balanceHashMap;
 	}
 
+	@Override
 	public void addBalanceToHashMap(Balance b) {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
 		// TODO
 		// dbAccess.INSTANCE.getDatastore().save(b);
+	}
+
+	@Override
+	public void updateBalanceToHashMap(Balance b) {
+		balanceHashMap.remove(b.getBalanceCode());
+		// TODO remove Baaz
+		balanceHashMap.put(b.getBalanceCode(), b);
+		// TODO add Baaz
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,

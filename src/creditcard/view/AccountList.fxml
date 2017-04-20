@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" styleClass="application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.AccountListController">
+<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="750.0" styleClass="application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.AccountListController">
    <children>
        <Label layoutX="47.0" layoutY="8.0" style="-fx-text-fill: #C8923A;" text="Account List">
          <font>
             <Font size="20.0" />
          </font>
       </Label>  
-      <TableView fx:id="accountTable" layoutX="47.0" layoutY="82.0" prefHeight="259.0" prefWidth="655.0">
+      <TableView fx:id="accountTable" layoutX="47.0" layoutY="54.0" prefHeight="287.0" prefWidth="655.0">
          <columns>
         	<TableColumn fx:id="colAccountNo" prefWidth="100.0" text="Account no" />
         	<TableColumn fx:id="colCardNo" prefWidth="150.0" text="Card no" /> 
@@ -26,12 +26,15 @@
             <TableColumn fx:id="colTotalLimit" prefWidth="250" text="Total limit" />                         
           </columns>
       </TableView>
-      <Button fx:id="btnNewAccount" layoutX="47.0" layoutY="39.0" minWidth="150.0" mnemonicParsing="false" onAction="#ActionAdd" styleClass="my-button-dark" text="Add New Account" />
       
-      <Button fx:id="btnEditAccount" layoutX="322.0" layoutY="358.0" mnemonicParsing="false" styleClass="my-button-dark" text="Edit Account" />
+      <Button fx:id="btnEditAccount" layoutX="149.0" layoutY="396.0" mnemonicParsing="false" onAction="#clickAccountEdit" styleClass="my-button-dark" text="Edit Account" />
       <TextField fx:id="txtEditAccount" layoutX="149.0" layoutY="359.0" />
       <Label layoutX="64.0" layoutY="362.0" style="-fx-text-fill: #C8923A;" text="Account no" />
       <Label fx:id="editError" layoutX="437.0" layoutY="384.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" />
-      <Button fx:id="btnTranList" layoutX="427.0" layoutY="357.0" mnemonicParsing="false" onAction="#openTransactionWindow" styleClass="my-button-dark" text="Tran list" />
+      <Button fx:id="btnTranList" layoutX="254.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickTranList" styleClass="my-button-dark" text="Tran list" />
+      <Button fx:id="btnPurchase" layoutX="328.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickPurchase" styleClass="my-button-dark" text="Purchase" />
+      <Button fx:id="btnCash" layoutX="407.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickWithdraw" styleClass="my-button-dark" text="Withdraw" />
+      <Button fx:id="btnRepayment" layoutX="491.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickRepayment" styleClass="my-button-dark" text="Repayment" />
+      <Button fx:id="btnCreateStatement" layoutX="585.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickCreateStatement" styleClass="my-button-dark" text="Create statement" />
    </children>
 </Pane>

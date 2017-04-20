@@ -95,6 +95,26 @@ public class CreditFacade {
 		// TODO send notification
 	}
 
+	public void updateAccount(int pAccountNo, LocalDate pStartDate, LocalDate pEndDate, BigDecimal pTotalLimit,
+			BigDecimal pCashLImit) throws MyOwnException {
+		CreditCardAccount ccAccount = null;
+		// ccAccount.saveAccount();
+
+		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
+		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);
+
+		if (balLimit.getBalance().compareTo(pTotalLimit) != 0) {
+			balLimit.setBalance(pTotalLimit);
+			ccAccount.updateBalanceToHashMap(balLimit);
+		}
+		if (balLimit.getBalance().compareTo(pTotalLimit) != 0) {
+			balLimit.setBalance(pCashLImit);
+			ccAccount.updateBalanceToHashMap(balLimitCash);
+		}
+
+		// TODO send notification
+	}
+
 	public void openAccount(String pAccountNo) throws MyOwnException {
 		CreditCardAccount pCcAccount = getCCAccountDetail(pAccountNo);
 		pCcAccount.openAccount();
