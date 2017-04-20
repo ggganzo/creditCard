@@ -8,6 +8,11 @@ import java.util.ResourceBundle;
 import javax.swing.RootPaneContainer;
 
 import application.Main;
+import creditcard.factory.User;
+import creditcard.service.WindowService;
+import databaseLayer.contextLayer.ContextLayer;
+import databaseLayer.exception.LoginException;
+import financialcore.customer.Staff;
 import financialcore.general.MyOwnException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,46 +27,45 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Login implements Initializable {
+public class LoginController implements Initializable {
 
 	@FXML
 	private Button btnLogin;
 	@FXML
-	private TextField txtUserId;
+	private TextField txtUserName;
 	@FXML
-	private PasswordField passwordField;
+	private PasswordField txtPassword;
 	@FXML
 	private Label lblError;
 
 	// public User static loggedUser = null;
 
-	private void validateUserLogin() throws MyOwnException {
-		int user_id = 0;
-		try {
-			user_id = new Integer(txtUserId.getText());
-		} catch (Exception e) {
-			throw new MyOwnException();
+	private boolean validateUserLogin() throws LoginException {
+		String userName  = txtUserName.getText();
+		String password = txtPassword.getText();
+		
+		Staff staff = ContextLayer.Model().Persons().getStaff(userName, password);
+		if(staff!= null){
+			User.GetCurrent().setStaff(staff);
+			return true;
 		}
-		String password = passwordField.getText();
-
+		else{
+			throw new LoginException("Incorrect login or password. Please, try again");
+		}
 	}
 
 	public void loginHandler(ActionEvent event) {
-
-		// validateUserLogin();
-
-		// MainController.setCurrentUser(user);
 		try {
-			Stage stage1 = Main.getPrimaryStage();
-			Parent mainView = FXMLLoader.load(getClass().getResource("/creditcard/view/MainForm.fxml"));
-
-			Scene scene = new Scene(mainView, 1000, 700);
-			stage1.setScene(scene);
-			stage1.show();
-		} catch (IOException io) {
+				if(validateUserLogin())
+				{
+					WindowService.ShowMainScreen();
+				}
+		}catch (LoginException ex) {
+			lblError.setText(ex.getMessage());
+		}
+		catch (IOException io) {
 			io.printStackTrace();
 		}
-
 	}
 
 	@Override
