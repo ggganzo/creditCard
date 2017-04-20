@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import application.Main;
 import creditcard.model.CreditCardAccount;
+import creditcard.service.ScreenService;
 import financialcore.customer.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,7 +76,7 @@ public class MainFormController implements Initializable {
 		currentUser = null;
 		mainController = null;
 
-		Stage stage = Main.getPrimaryStage();
+		Stage stage = ScreenService.Current().getMainStage();
 		Parent root = null;
 		try {
 			root = FXMLLoader.load(getClass().getResource("/creditcard/view/Login.fxml"));
