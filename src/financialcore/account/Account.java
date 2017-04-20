@@ -21,13 +21,13 @@ public class Account implements AccountI {
 
 	// @Id
 	// private ObjectId id;
-	private int accountNo;
-	private String ccy;
+	private int accountNumber;
+	private String currency;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	// @Reference
 	private Customer cust;
-	private long interestRate;
+	private float interestRate;
 	private String type;
 	private String status = "NEW";// NEW, OPENED, CLOSED
 
@@ -42,11 +42,11 @@ public class Account implements AccountI {
 	@Reference
 	private HashMap<String, Balance> balanceHashMap = new HashMap<>();
 
-	public long getInterestRate() {
+	public float getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(long interestRate) {
+	public void setInterestRate(float interestRate) {
 		this.interestRate = interestRate;
 	}
 
@@ -66,15 +66,19 @@ public class Account implements AccountI {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
 		// TODO
-		//dbAccess.INSTANCE.getDatastore().save(b);
+		// dbAccess.INSTANCE.getDatastore().save(b);
+	}
+
+	public Account() {
+
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
 			LocalDate pEndDate) {
 
-		this.setAccountNo(pAccountNo);
+		this.setAccountNumber(pAccountNo);
 		this.setType(pType);
-		this.setCcy(pCcy);
+		this.setCurrency(pCcy);
 		this.setStartDate(pStartDate);
 		this.setEndDate(pEndDate);
 		Customer cust = null;
@@ -89,20 +93,20 @@ public class Account implements AccountI {
 		this.setInterestRate(pInterestRate);
 	}
 
-	public int getAccountNo() {
-		return accountNo;
+	public int getAccountNumber() {
+		return accountNumber;
 	}
 
-	public void setAccountNo(int accountNo) {
-		this.accountNo = accountNo;
+	public void setAccountNumber(int accountNo) {
+		this.accountNumber = accountNo;
 	}
 
-	public String getCcy() {
-		return ccy;
+	public String getCurrency() {
+		return currency;
 	}
 
-	public void setCcy(String ccy) {
-		this.ccy = ccy;
+	public void setCurrency(String ccy) {
+		this.currency = ccy;
 	}
 
 	public LocalDate getStartDate() {
