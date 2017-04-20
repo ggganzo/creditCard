@@ -42,7 +42,7 @@ public class AccountListController implements Initializable {
 	private TableColumn<CreditCardAccount, String> colCardName;
 
 	@FXML
-	private TableColumn<CreditCardAccount, String> colTotalLimit;
+	private TableColumn<CreditCardAccount, String> colStatus;
 
 	@FXML
 	private Button btnNewAccount;
@@ -68,19 +68,11 @@ public class AccountListController implements Initializable {
 		colAccountNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("accountNo"));
 		colCardNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardNo"));
 		colCardName.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardName"));
-
-		// colTotalLimit.setCellValueFactory(new
-		// PropertyValueFactory<CreditCardAccount, String>("totallimit"));
+		colStatus.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("status"));
 
 		accountTable.setItems(FXCollections.observableArrayList(accountList));
 	}
 
-	/*
-	 * @FXML public void backAction() { String memberView =
-	 * "../view/layout/StaffBoard.fxml"; String viewTitle = "Library System";
-	 * LoginController.helper.loadNewStage( stage, lblTitle, memberView,
-	 * viewTitle, false); }
-	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("initialize");
@@ -178,6 +170,26 @@ public class AccountListController implements Initializable {
 
 	@FXML
 	public void clickCreateStatement() {
+
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void clickOpen() {
+
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void clickClose() {
 
 		try {
 

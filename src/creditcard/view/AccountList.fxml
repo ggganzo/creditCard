@@ -23,7 +23,7 @@
         	<TableColumn fx:id="colAccountNo" prefWidth="100.0" text="Account no" />
         	<TableColumn fx:id="colCardNo" prefWidth="150.0" text="Card no" /> 
             <TableColumn fx:id="colCardName" prefWidth="150.0" text="Card name" /> 
-            <TableColumn fx:id="colTotalLimit" prefWidth="250" text="Total limit" />                         
+            <TableColumn fx:id="colStatus" prefWidth="250" text="Status" />                         
           </columns>
       </TableView>
       
@@ -36,5 +36,7 @@
       <Button fx:id="btnCash" layoutX="407.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickWithdraw" styleClass="my-button-dark" text="Withdraw" />
       <Button fx:id="btnRepayment" layoutX="491.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickRepayment" styleClass="my-button-dark" text="Repayment" />
       <Button fx:id="btnCreateStatement" layoutX="585.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickCreateStatement" styleClass="my-button-dark" text="Create statement" />
+      <Button fx:id="btnOpen" layoutX="332.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickOpen" styleClass="my-button-dark" text="Open" />
+      <Button fx:id="btnClose" layoutX="403.0" layoutY="357.0" mnemonicParsing="false" onAction="#clickClose" styleClass="my-button-dark" text="Close" />
    </children>
 </Pane>

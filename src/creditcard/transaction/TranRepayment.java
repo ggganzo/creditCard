@@ -1,9 +1,10 @@
 package creditcard.transaction;
 
-import java.math.BigDecimal;
-
 import creditcard.model.CreditCardAccount;
+import financialcore.account.NotificationTran;
+import financialcore.account.TransactionTemplate;
 import financialcore.general.MyOwnException;
+import financialcore.interfaces.NotificationI;
 
 public class TranRepayment implements TranCommand {
 	CreditCardAccount account = null;
@@ -17,6 +18,8 @@ public class TranRepayment implements TranCommand {
 	@Override
 	public void execute() throws MyOwnException {
 		account.repayment(tranTemplate.amount, tranTemplate.description);
+		NotificationI notify = new NotificationTran();
+		notify.sendNotifictation(tranTemplate);
 	}
 
 }
