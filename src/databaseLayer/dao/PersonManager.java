@@ -35,7 +35,7 @@ public class PersonManager implements IDataManager<Person> {
     @Override
     public List<Person> getElements() {
     	List<Person> persons = new ArrayList<>();
-        try (ResultSet resultSet = executeQuery("SELECT * FROM person")) {
+        try (ResultSet resultSet = executeQuery("SELECT * FROM person order by personid desc")) {
 
             while (resultSet.next()) {
             	persons.add(convertToPerson(resultSet));
@@ -50,19 +50,34 @@ public class PersonManager implements IDataManager<Person> {
     @Override
     public List<Person> getElements(Object obj1, Object obj2) {
     	List<Person> persons = new ArrayList<>();
-    	String sql = "SELECT * FROM person WHERE lastname ilike '" + obj1.toString() + "'";
+    	String sql = "SELECT * FROM person ";
+    	String filter = " WHERE typeid = 0 ";
     	
-    	if(obj2.toString().length() > 0){
-    		sql+=" AND firstname ilike '" + obj2.toString() + "'";
+    	if(obj1.toString().length() > 0){
+    		if(filter.length() > 0){
+    			filter+=" AND ";
+    		}
+    		
+    		filter+=" lastname like '%" + obj1.toString() + "%'";
     	}
     	
-    	try (ResultSet resultSet = executeQuery(sql)) {
+    	if(obj2.toString().length() > 0){
+    		if(filter.length() > 0){
+    			filter+=" AND ";
+    		}
+    		
+    		filter+=" firstname like '%" + obj2.toString() + "%'";
+    	}
+    	
+    	
+    	
+    	try (ResultSet resultSet = executeQuery(sql + filter)) {
 
             while (resultSet.next()) {
             	persons.add(convertToPerson(resultSet));
             }
 
-            return null;
+            return persons;
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }

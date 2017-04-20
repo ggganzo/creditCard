@@ -14,14 +14,14 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Account">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Create" />
-                        <MenuItem mnemonicParsing="false" text="View" />
+                    <MenuItem mnemonicParsing="false" onAction="#openAccountCreate" text="Create" />
+                        <MenuItem mnemonicParsing="false" onAction="#openAccountView" text="View" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Customer">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Create" />
-                        <MenuItem mnemonicParsing="false" text="View" />
+                    <MenuItem mnemonicParsing="false" onAction="#openCustomerCreate" text="Create" />
+                        <MenuItem mnemonicParsing="false" onAction="#openCustomerView" text="View" />
                   </items>
                 </Menu>
                   
@@ -40,7 +40,7 @@
             </MenuBar>
          </children>
       </AnchorPane>
-      <Pane prefHeight="570.0" prefWidth="800.0" />
+      <Pane fx:id="paneMain" prefHeight="570.0" prefWidth="800.0" />
    </children>
 
 </VBox>

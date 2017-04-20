@@ -19,7 +19,7 @@
             <Font size="42.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserName" layoutX="135.0" layoutY="107.0" />
+      <TextField fx:id="txtUserName" layoutX="135.0" layoutY="107.0" promptText="login" text="orifjon9" />
       <Label layoutX="36.0" layoutY="111.0" style="-fx-text-fill: #C8923A;" text="User ID:">
          <font>
             <Font size="20.0" />
@@ -30,7 +30,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtPassword" layoutX="135.0" layoutY="148.0" />
+      <PasswordField fx:id="txtPassword" layoutX="135.0" layoutY="148.0" promptText="password" text="orifjon9" />
       <Label fx:id="lblError" layoutX="40.0" layoutY="217.0" prefHeight="51.0" prefWidth="349.0" textFill="#dd2626" />
    </children>
 </Pane>

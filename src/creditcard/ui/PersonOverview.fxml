@@ -33,8 +33,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="View">
             <items>
-              <MenuItem mnemonicParsing="false" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Edit" />
+              <MenuItem mnemonicParsing="false" onAction="#createPerson" text="Add" />
+                  <MenuItem mnemonicParsing="false" onAction="#updatePerson" text="Edit" />
                   <MenuItem mnemonicParsing="false" text="Transactions" />
             </items>
           </Menu>
@@ -63,7 +63,7 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="txtLastName" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="3" />
+            <TextField fx:id="txtFirstName" GridPane.columnIndex="3" />
             <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchPersons" prefHeight="31.0" prefWidth="160.0" text="Search" GridPane.columnIndex="4">
                <GridPane.margin>
                   <Insets left="20.0" />
