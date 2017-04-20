@@ -86,7 +86,7 @@ public class Account implements AccountI {
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,
-			long pInterestRate) {
+			float pInterestRate) {
 
 		this(pCustNo, pAccountNo, pType, pCcy, pStartDate, pEndDate);
 

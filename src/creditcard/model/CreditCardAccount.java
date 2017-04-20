@@ -80,7 +80,7 @@ public class CreditCardAccount extends Account {
 	}
 
 	public CreditCardAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
-			LocalDate pStartDate, LocalDate pEndDate, long pInterestRate) {
+			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate) {
 
 		super(pCustNo, pAccountNo, "CreditCard", pCcy, pStartDate, pEndDate, pInterestRate);
 
@@ -116,7 +116,7 @@ public class CreditCardAccount extends Account {
 	public void openAccount() throws MyOwnException {
 		// super.saveAccount();
 		stateCurrent.openAccount();
-		
+
 		super.setStatus("OPEN");
 		super.updateAccount();
 
@@ -147,13 +147,16 @@ public class CreditCardAccount extends Account {
 	public void createBalances() {
 		Balance balCash = new Balance(this.getAccountNo(), BalanceCode.CASH.toString(), new BigDecimal(0));
 		Balance balPurchase = new Balance(this.getAccountNo(), BalanceCode.PURCHASE.toString(), new BigDecimal(0));
-		Balance balLimit = new Balance(this.getAccountNo(), BalanceCode.LIMIT.toString(), new BigDecimal(0));
-		Balance balLimitCash = new Balance(this.getAccountNo(), BalanceCode.LIMITCASH.toString(), new BigDecimal(0));
+		//Balance balLimit = new Balance(this.getAccountNo(), BalanceCode.LIMIT.toString(), new BigDecimal(0));
+		//Balance balLimitCash = new Balance(this.getAccountNo(), BalanceCode.LIMITCASH.toString(), new BigDecimal(0));
+		//Balance minPaymentAmount = new Balance(this.getAccountNo(), BalanceCode.MINPAYAMOUNT.toString(),
+				new BigDecimal(0));
 
 		super.addBalanceToHashMap(balCash);
 		super.addBalanceToHashMap(balPurchase);
 		super.addBalanceToHashMap(balLimit);
 		super.addBalanceToHashMap(balLimitCash);
+		super.addBalanceToHashMap(minPaymentAmount);
 	}
 
 	public void checkBalance() throws MyOwnException {

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import financialcore.account.Balance;
 import financialcore.account.Transaction;
 import financialcore.customer.Customer;
 import financialcore.customer.Person;
@@ -73,12 +74,22 @@ public class CreditFacade {
 	}
 
 	public void createAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
-			LocalDate pStartDate, LocalDate pEndDate, long pInterestRate) throws MyOwnException {
+			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate, BigDecimal pTotalLimit,
+			BigDecimal pCashLImit) throws MyOwnException {
 
 		CreditCardAccount ccAccount = new CreditCardAccount(pCustNo, pCardNumber, pCardName, pAccountNo, pCcy,
 				pStartDate, pEndDate, pInterestRate);
 
 		ccAccount.saveAccount();
+
+		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
+		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);
+		Balance minPaymentAmount = new Balance(ccAccount.getAccountNo(), BalanceCode.MINPAYAMOUNT.toString(),
+				pTotalLimit.multiply(new BigDecimal(0.2)));
+
+		ccAccount.addBalanceToHashMap(balLimit);
+		ccAccount.addBalanceToHashMap(balLimitCash);
+		ccAccount.addBalanceToHashMap(minPaymentAmount);
 
 		// TODO send notification
 	}
