@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
 import creditcard.model.CreditCardAccount;
 import creditcard.service.ScreenService;
 import financialcore.customer.Staff;

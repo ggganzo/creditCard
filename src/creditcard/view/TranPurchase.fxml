@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="440.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.TranPurchaseController">
+   <children>
+      <Label fx:id="errorMessage" layoutX="147.0" layoutY="70.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" textFill="#fcf7f7" />
+      <Label layoutX="33.0" layoutY="21.0" style="-fx-text-fill: #C8923A;" text="Purchase">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAccountNo" layoutX="148.0" layoutY="75.0" />
+      
+      <Label layoutX="34.0" layoutY="76.0" style="-fx-text-fill: #C8923A;" text="Account no:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>    
+       <Button fx:id="btnSave" layoutX="149.0" layoutY="176.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Do" />
+      <Label layoutX="39.0" layoutY="105.0" style="-fx-text-fill: #C8923A;" text="Amount:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="226.0" prefHeight="129.0" prefWidth="361.0">
+        <columns>
+          <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />
+          <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />
+        </columns>
+      </TableView>
+      <Label layoutX="28.0" layoutY="138.0" style="-fx-text-fill: #C8923A;" text="Description:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTranAmount" layoutX="147.0" layoutY="108.0" />
+      <TextField fx:id="txtDesc" layoutX="148.0" layoutY="142.0" />
+   </children>
+</Pane>
