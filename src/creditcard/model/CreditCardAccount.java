@@ -116,6 +116,7 @@ public class CreditCardAccount extends Account {
 	public void openAccount() throws MyOwnException {
 		// super.saveAccount();
 		stateCurrent.openAccount();
+		
 		super.setStatus("OPEN");
 		super.updateAccount();
 

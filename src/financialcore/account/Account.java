@@ -3,9 +3,9 @@ package financialcore.account;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
+//import org.bson.types.ObjectId;
+//import org.mongodb.morphia.annotations.Entity;
+//import org.mongodb.morphia.annotations.Id;
 
 import financialcore.customer.Customer;
 import financialcore.db.dbAccess;
@@ -66,7 +66,7 @@ public class Account implements AccountI {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
 		// TODO
-		dbAccess.INSTANCE.getDatastore().save(b);
+		//dbAccess.INSTANCE.getDatastore().save(b);
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
