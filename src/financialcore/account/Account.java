@@ -3,7 +3,6 @@ package financialcore.account;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-
 import databaseLayer.AbstractElement;
 import financialcore.customer.Customer;
 import financialcore.general.MyOwnException;
@@ -13,23 +12,21 @@ import jdk.nashorn.internal.ir.annotations.Reference;
 /**
  * Created by ganzo on 4/13/17.
  */
-// @Entity(value = "account")
+
 public class Account extends AbstractElement implements AccountI {
 
-	// @Id
-	// private ObjectId id;
 	private int accountNumber;
 	private String currency;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	// @Reference
 	private Customer cust;
 	private float interestRate;
 	private String type;
 	private String status = "NEW";// NEW, OPENED, CLOSED
 
-	public Account(){}
-	
+	public Account() {
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -65,7 +62,7 @@ public class Account extends AbstractElement implements AccountI {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
 		// TODO
-		//dbAccess.INSTANCE.getDatastore().save(b);
+		// dbAccess.INSTANCE.getDatastore().save(b);
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
@@ -126,10 +123,6 @@ public class Account extends AbstractElement implements AccountI {
 
 	public void setCust(Customer cust) {
 		this.cust = cust;
-	}
-
-	public void setBalanceHashMap(HashMap<String, Balance> balanceHashMap) {
-		this.balanceHashMap = balanceHashMap;
 	}
 
 	@Override

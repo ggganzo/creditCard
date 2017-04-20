@@ -49,7 +49,7 @@ public class CreditFacade {
 		return staff;
 	}
 
-	public List<Transaction> getTransactionList(String pAccountNo) {
+	public List<Transaction> getTransactionList(int pAccountNo) {
 		List<Transaction> tran = null;
 
 		return tran;
@@ -135,15 +135,12 @@ public class CreditFacade {
 		Balance minPaymentAmount = new Balance(ccAccount.getAccountNo(), BalanceCode.MINPAYAMOUNT.toString(),
 				totalLimit.getBalance().multiply(new BigDecimal(0.2)));
 
-		
-		
-		
 		// TODO Create Statemtn
 		// TODO Send notification
 	}
-	
-	private void sendNotification(){
-		
+
+	private void sendNotification() {
+
 	}
 
 	private CreditCardAccount getCCAccountDetail(String pAccountNo) {

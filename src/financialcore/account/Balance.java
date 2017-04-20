@@ -1,43 +1,25 @@
 package financialcore.account;
 
 import java.math.BigDecimal;
-
+import java.time.LocalDate;
 
 import databaseLayer.AbstractElement;
-/*
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-*/
 import financialcore.config.Sequence;
-//import financialcore.db.dbAccess;
 
 /**
  * Created by ganzo on 4/13/17.
  */
-//@Entity(value = "balance")
 public class Balance extends AbstractElement {
-
-	//@Id
-	//private ObjectId id;
 
 	private int accountNo;
 
 	private String balanceCode;
 	private BigDecimal balance;
-	
-	public Balance(){
-		
-	}
-/*
-	public ObjectId getId() {
-		return id;
+
+	public Balance() {
+
 	}
 
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-*/
 	public int getAccountNumber() {
 		return accountNo;
 	}
@@ -81,7 +63,7 @@ public class Balance extends AbstractElement {
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
 
-		//dbAccess.INSTANCE.getDatastore().save(t);
+		// dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
 
@@ -97,7 +79,7 @@ public class Balance extends AbstractElement {
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
 
-		//dbAccess.INSTANCE.getDatastore().save(t);
+		// dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
 }

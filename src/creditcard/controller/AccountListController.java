@@ -13,7 +13,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -28,6 +31,7 @@ public class AccountListController implements Initializable {
 	// static Helper helper = new Helper();
 	List<CreditCardAccount> accountList;
 	CreditFacade facade = new CreditFacade();
+	CreditCardAccount account;
 
 	@FXML
 	private TableView<CreditCardAccount> accountTable;
@@ -55,6 +59,9 @@ public class AccountListController implements Initializable {
 
 	@FXML
 	private Label editError;
+
+	@FXML
+	private Button btnTranList;
 
 	Stage stage;
 
@@ -117,9 +124,28 @@ public class AccountListController implements Initializable {
 
 	@FXML
 	public void clickTable() {
-		CreditCardAccount account = accountTable.getSelectionModel().getSelectedItem();
+		account = accountTable.getSelectionModel().getSelectedItem();
 		txtEditAccount.setText(String.valueOf(account.getAccountNo()));
 
+	}
+
+	@FXML
+	public void openTransactionWindow() {
+
+		try {
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TrsanList.fxml"));
+			Parent root1 = (Parent) fxmlLoader1.load();
+			Stage stage1 = new Stage();
+			stage1.setScene(new Scene(root1));
+
+			TranListController controller = fxmlLoader1.<TranListController>getController();
+			controller.initData(account);
+
+			stage1.show();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

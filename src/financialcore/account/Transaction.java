@@ -2,19 +2,12 @@ package financialcore.account;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+import java.time.format.DateTimeFormatter;
 
 import databaseLayer.AbstractElement;
-/*
-import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-*/
-//@Entity(value = "transaction")
+
 public class Transaction extends AbstractElement {
-	/*@Id
-	private ObjectId id;
-*/
+
 	private int tranNo;
 	private int accountNo;
 	private String balanceCode;
@@ -24,6 +17,12 @@ public class Transaction extends AbstractElement {
 	private String tranCode;
 	private String description;
 	private LocalDate tranDate;
+
+	public Transaction() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		LocalDate localDate = LocalDate.now();
+		System.out.println(dtf.format(localDate)); // 2016/11/16
+	}
 
 	public String getTranCode() {
 		return tranCode;
@@ -41,14 +40,6 @@ public class Transaction extends AbstractElement {
 		this.description = description;
 	}
 
-	/*public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-*/
 	public int getTransactionNumber() {
 		return tranNo;
 	}

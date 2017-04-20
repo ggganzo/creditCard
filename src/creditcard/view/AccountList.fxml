@@ -32,5 +32,6 @@
       <TextField fx:id="txtEditAccount" layoutX="149.0" layoutY="359.0" />
       <Label layoutX="64.0" layoutY="362.0" style="-fx-text-fill: #C8923A;" text="Account no" />
       <Label fx:id="editError" layoutX="437.0" layoutY="384.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" />
+      <Button fx:id="btnTranList" layoutX="427.0" layoutY="357.0" mnemonicParsing="false" onAction="#openTransactionWindow" styleClass="my-button-dark" text="Tran list" />
    </children>
 </Pane>
