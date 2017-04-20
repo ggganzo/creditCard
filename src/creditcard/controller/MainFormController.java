@@ -78,7 +78,7 @@ public class MainFormController implements Initializable {
 		Stage stage = Main.getPrimaryStage();
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/creditcard/view/Login.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,15 +96,15 @@ public class MainFormController implements Initializable {
 			switch (buttonLabel) {
 
 			case "welcome":
-				intent = FXMLLoader.load(getClass().getResource("/view/Welcome.fxml"));
+				intent = FXMLLoader.load(getClass().getResource("/creditcard/view/Welcome.fxml"));
 				contentPane.getChildren().setAll(intent);
 				break;
 			case "accountList":
-				intent = FXMLLoader.load(getClass().getResource("/view/AccountList.fxml"));
+				intent = FXMLLoader.load(getClass().getResource("/creditcard/view/AccountList.fxml"));
 				contentPane.getChildren().setAll(intent);
 				break;
 			case "createNewAccount":
-				intent = FXMLLoader.load(getClass().getResource("/view/CreateAccount.fxml"));
+				intent = FXMLLoader.load(getClass().getResource("/creditcard/view/CreateAccount.fxml"));
 				contentPane.getChildren().setAll(intent);
 				break;
 			}
@@ -120,7 +120,7 @@ public class MainFormController implements Initializable {
 		try {
 			switch (buttonLabel) {
 			case "editEmployee":
-				FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/view/CreateAccount.fxml"));
+				FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/creditcard/view/CreateAccount.fxml"));
 				intent = fxloader.load();
 				AccountCreateController cont = fxloader.getController();
 				cont.setAccount(account);

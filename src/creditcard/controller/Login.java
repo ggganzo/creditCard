@@ -53,7 +53,7 @@ public class Login implements Initializable {
 		// MainController.setCurrentUser(user);
 		try {
 			Stage stage1 = Main.getPrimaryStage();
-			Parent mainView = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+			Parent mainView = FXMLLoader.load(getClass().getResource("/creditcard/view/MainForm.fxml"));
 
 			Scene scene = new Scene(mainView, 1000, 700);
 			stage1.setScene(scene);

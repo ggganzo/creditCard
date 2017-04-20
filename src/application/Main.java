@@ -17,7 +17,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Main.primaryStage = primaryStage;
-			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/creditcard/view/Login.fxml"));
 
 			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

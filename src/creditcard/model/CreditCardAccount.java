@@ -150,13 +150,13 @@ public class CreditCardAccount extends Account {
 		//Balance balLimit = new Balance(this.getAccountNo(), BalanceCode.LIMIT.toString(), new BigDecimal(0));
 		//Balance balLimitCash = new Balance(this.getAccountNo(), BalanceCode.LIMITCASH.toString(), new BigDecimal(0));
 		//Balance minPaymentAmount = new Balance(this.getAccountNo(), BalanceCode.MINPAYAMOUNT.toString(),
-				new BigDecimal(0));
+		//		new BigDecimal(0));
 
 		super.addBalanceToHashMap(balCash);
 		super.addBalanceToHashMap(balPurchase);
-		super.addBalanceToHashMap(balLimit);
-		super.addBalanceToHashMap(balLimitCash);
-		super.addBalanceToHashMap(minPaymentAmount);
+		//super.addBalanceToHashMap(balLimit);
+		//super.addBalanceToHashMap(balLimitCash);
+		//super.addBalanceToHashMap(minPaymentAmount);
 	}
 
 	public void checkBalance() throws MyOwnException {
