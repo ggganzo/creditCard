@@ -13,11 +13,14 @@ import java.util.List;
 public interface IDataManager<T> {
     T getElement(int id);
     List<T> getElements();
-    List<T> getElements(Object obj1,Object obj2);
+    List<T> getElements(Object obj1, Object obj2);
     boolean add(T element);
     boolean update(T element);
     boolean delete(T element);
-
+    default T getElement(Object obj1, Object obj2){
+    	return null;
+    }
+    
     default ResultSet executeQuery(String query) throws Exception {
         Connection connection = DBConnection.SQLiteConnection();
         Statement statement = connection.createStatement();
