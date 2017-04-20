@@ -3,12 +3,9 @@ package financialcore.account;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-//import org.bson.types.ObjectId;
-//import org.mongodb.morphia.annotations.Entity;
-//import org.mongodb.morphia.annotations.Id;
 
+import databaseLayer.AbstractElement;
 import financialcore.customer.Customer;
-import financialcore.db.dbAccess;
 import financialcore.general.MyOwnException;
 import financialcore.interfaces.AccountI;
 import jdk.nashorn.internal.ir.annotations.Reference;
@@ -17,7 +14,7 @@ import jdk.nashorn.internal.ir.annotations.Reference;
  * Created by ganzo on 4/13/17.
  */
 // @Entity(value = "account")
-public class Account implements AccountI {
+public class Account extends AbstractElement implements AccountI {
 
 	// @Id
 	// private ObjectId id;
@@ -31,6 +28,8 @@ public class Account implements AccountI {
 	private String type;
 	private String status = "NEW";// NEW, OPENED, CLOSED
 
+	public Account(){}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -66,11 +65,7 @@ public class Account implements AccountI {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
 		// TODO
-		// dbAccess.INSTANCE.getDatastore().save(b);
-	}
-
-	public Account() {
-
+		//dbAccess.INSTANCE.getDatastore().save(b);
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
@@ -86,7 +81,7 @@ public class Account implements AccountI {
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,
-			float pInterestRate) {
+			long pInterestRate) {
 
 		this(pCustNo, pAccountNo, pType, pCcy, pStartDate, pEndDate);
 
@@ -97,16 +92,16 @@ public class Account implements AccountI {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNo) {
-		this.accountNumber = accountNo;
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public String getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String ccy) {
-		this.currency = ccy;
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 	public LocalDate getStartDate() {

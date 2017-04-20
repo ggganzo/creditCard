@@ -57,8 +57,8 @@ public class CreditFacade {
 
 	public void createStaff(String pCustNo, String pFirstName, String pLastName, int pAge, String pUserName,
 			String pPassword) {
-		Customer cust = new Customer(pCustNo, pFirstName, pLastName, pAge, pUserName, pPassword);
-		cust.createPerson();
+		//Customer cust = new Customer(pCustNo, pFirstName, pLastName, pAge, pUserName, pPassword);
+		//cust.createPerson();
 	}
 
 	public void updateStaff(String pCustNo, String pFirstName, String pLastName, int pAge, String pUserName,
@@ -69,7 +69,7 @@ public class CreditFacade {
 		cust.setLastName(pLastName);
 		cust.setPassword(pPassword);
 		cust.setUserName(pUserName);
-		cust.updatePerson();
+		//cust.updatePerson();
 
 	}
 
@@ -80,7 +80,7 @@ public class CreditFacade {
 		CreditCardAccount ccAccount = new CreditCardAccount(pCustNo, pCardNumber, pCardName, pAccountNo, pCcy,
 				pStartDate, pEndDate, pInterestRate);
 
-		ccAccount.saveAccount();
+		//ccAccount.saveAccount();
 
 		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
 		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);
@@ -122,7 +122,7 @@ public class CreditFacade {
 	public void repayment(String pAccountNo, BigDecimal pAmount, String TranDesc) throws MyOwnException {
 
 		CreditCardAccount pCcAccount = getCCAccountDetail(pAccountNo);
-		pCcAccount.repayment(pAmount, TranDesc);
+		//pCcAccount.repayment(pAmount, TranDesc);
 
 		// TODO send notification
 	}

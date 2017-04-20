@@ -1,14 +1,33 @@
 package financialcore.customer;
 
-public abstract class Person {
+import databaseLayer.AbstractElement;
 
-	public Person(String pFirstName, String pLastName, int pAge, String pUserName, String pPassword) {
+public abstract class Person extends AbstractElement {
+	private final PersonType personType;
+	private long personId;
+	private String firstName;
+	private String lastName;
+	private int age;
 
+	private String userName;
+	private String password;
+	
+	public Person(PersonType personType){
+		this.personType = personType;
+	}
+	
+	public Person(long personId, String pFirstName, String pLastName, int pAge, String pUserName, String pPassword, PersonType personType) {
+		this.personId = personId;
 		this.firstName = pFirstName;
 		this.lastName = pLastName;
 		this.age = pAge;
 		this.userName = pUserName;
 		this.password = pPassword;
+		this.personType = personType;
+	}
+	
+	public Person(String pFirstName, String pLastName, int pAge, String pUserName, String pPassword, PersonType personType) {
+		this(0, pFirstName, pLastName, pAge, pUserName, pPassword, personType);
 	}
 
 	public String getFirstName() {
@@ -35,14 +54,7 @@ public abstract class Person {
 		this.age = age;
 	}
 
-	private String firstName;
-	private String lastName;
-	private int age;
-
-	private String userName;
-	private String password;
-
-	private String personNo;
+	
 
 	public String getUserName() {
 		return userName;
@@ -60,16 +72,21 @@ public abstract class Person {
 		this.password = password;
 	}
 
-	public abstract void createPerson();
+	/*public abstract void createPerson();
 
 	public abstract void updatePerson();
-
-	public String getPersonNo() {
-		return personNo;
+*/
+	public long getPersonId() {
+		return personId;
 	}
 
-	public void setPersonNo(String personNo) {
-		this.personNo = personNo;
+	public void setPersonId(long personId) {
+		this.personId = personId;
 	}
+	
+	public PersonType getType(){
+		return personType;
+	}
+	
 
 }

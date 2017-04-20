@@ -2,13 +2,16 @@ package financialcore.account;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+
+import databaseLayer.AbstractElement;
 /*
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 */
 //@Entity(value = "transaction")
-public class Transaction {
+public class Transaction extends AbstractElement {
 	/*@Id
 	private ObjectId id;
 */

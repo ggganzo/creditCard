@@ -56,7 +56,7 @@ public class AccountCreateController implements Initializable {
 
 		account.setCardName(txtCardName.getText());
 
-		account.saveAccount();
+		//account.saveAccount();
 
 	}
 

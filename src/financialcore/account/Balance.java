@@ -1,6 +1,9 @@
 package financialcore.account;
 
 import java.math.BigDecimal;
+
+
+import databaseLayer.AbstractElement;
 /*
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -13,7 +16,7 @@ import financialcore.config.Sequence;
  * Created by ganzo on 4/13/17.
  */
 //@Entity(value = "balance")
-public class Balance {
+public class Balance extends AbstractElement {
 
 	//@Id
 	//private ObjectId id;
