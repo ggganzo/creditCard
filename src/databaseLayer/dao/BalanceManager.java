@@ -19,7 +19,7 @@ public class BalanceManager implements IDataManager<Balance> {
         try (ResultSet resultSet = executeQuery("SELECT * FROM balance WHERE balanceid = " + id)) {
 
             while (resultSet.next()) {
-                return convertToAccount(resultSet);
+                return convertToBalance(resultSet);
             }
 
             return null;
@@ -34,7 +34,7 @@ public class BalanceManager implements IDataManager<Balance> {
         try (ResultSet resultSet = executeQuery("SELECT * FROM balance;")) {
 
             while (resultSet.next()) {
-                balances.add(convertToAccount(resultSet));
+                balances.add(convertToBalance(resultSet));
             }
 
             return balances;
@@ -57,7 +57,7 @@ public class BalanceManager implements IDataManager<Balance> {
         try (ResultSet resultSet = executeQuery(sql)) {
 
             while (resultSet.next()) {
-                balances.add(convertToAccount(resultSet));
+                balances.add(convertToBalance(resultSet));
             }
 
             return balances;
@@ -69,13 +69,11 @@ public class BalanceManager implements IDataManager<Balance> {
     @Override
     public boolean add(Balance element) {
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO balance(accountnumber, code,  amount) VALUES(?,?,?);")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO balance(amount, accountnumber, code) VALUES(?,?,?);")) {
 
             Class.forName("org.sqlite.JDBC");
 
-            statement.setInt(1, element.getAccountNumber());
-            statement.setString(2, element.getBalanceCode());
-            statement.setBigDecimal(3,element.getBalance());
+            setParameters(statement, element);
 
             return statement.executeUpdate() > 0;
 
@@ -91,9 +89,7 @@ public class BalanceManager implements IDataManager<Balance> {
 
             Class.forName("org.sqlite.JDBC");
 
-            statement.setBigDecimal(1, element.getBalance());
-            statement.setInt(2, element.getAccountNumber());
-            statement.setString(3, element.getBalanceCode());
+            setParameters(statement, element);
 
 
             return statement.executeUpdate() > 0;
@@ -108,8 +104,15 @@ public class BalanceManager implements IDataManager<Balance> {
         return false;
         //throw new BalanceException("You can't remove balance");
     }
+    
+    private void setParameters(PreparedStatement statement, Balance balance) throws SQLException
+    {
+    	statement.setBigDecimal(1, balance.getBalance());
+        statement.setInt(2, balance.getAccountNumber());
+        statement.setString(3, balance.getBalanceCode());
+    }
 
-    private Balance convertToAccount(ResultSet resultSet) throws SQLException{
+    private Balance convertToBalance(ResultSet resultSet) throws SQLException{
         Balance balance = new Balance();
 
         //balance.setId(resultSet.getInt("balanceid"));

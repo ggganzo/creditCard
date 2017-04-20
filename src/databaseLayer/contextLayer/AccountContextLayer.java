@@ -16,7 +16,7 @@ public class AccountContextLayer extends IContextLayer<Account> {
 
     private AccountContextLayer(){}
 
-    public static IContextLayer Accounts(){
+    public static IContextLayer<Account> Accounts(){
         return instance;
     }
 

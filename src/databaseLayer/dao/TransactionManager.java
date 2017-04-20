@@ -22,7 +22,7 @@ public class TransactionManager implements IDataManager<Transaction> {
         try (ResultSet resultSet = executeQuery("SELECT * FROM c_transaction WHERE transactionnumber = " + id)) {
 
             while (resultSet.next()) {
-                return convertToAccount(resultSet);
+                return convertToTransaction(resultSet);
             }
 
             return null;
@@ -37,7 +37,7 @@ public class TransactionManager implements IDataManager<Transaction> {
         try (ResultSet resultSet = executeQuery("SELECT * FROM c_transaction")) {
 
             while (resultSet.next()) {
-                transactions.add(convertToAccount(resultSet));
+                transactions.add(convertToTransaction(resultSet));
             }
 
             return transactions;
@@ -85,7 +85,7 @@ public class TransactionManager implements IDataManager<Transaction> {
         return false;
     }
 
-    private Transaction convertToAccount(ResultSet resultSet) throws SQLException {
+    private Transaction convertToTransaction(ResultSet resultSet) throws SQLException {
         Transaction transaction = new Transaction();
 
         transaction.setTransactionNumber(resultSet.getInt("transactionnumber"));

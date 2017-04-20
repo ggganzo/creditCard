@@ -19,7 +19,7 @@ public class DataStoreFactory implements IDataStoreFactory {
         stores.put(Account.class, new AccountManager());
         stores.put(Balance.class, new BalanceManager());
         stores.put(Transaction.class, new TransactionManager());
-        stores.put(Customer.class, new CustomerManager());
+        stores.put(Person.class, new PersonManager());
     }
 
     private DataStoreFactory(){}
