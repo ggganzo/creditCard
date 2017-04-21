@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import creditcard.model.CreditCardAccount;
 import creditcard.transaction.TranCommand;
-import creditcard.transaction.TranPurchase;
+import creditcard.transaction.TranWithdraw;
 import financialcore.account.Balance;
 import financialcore.account.TransactionTemplate;
 import financialcore.general.MyOwnException;
@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class TranPurchaseController implements Initializable {
+public class TranStatementController implements Initializable {
 	private CreditCardAccount account;
 
 	TranCommand command = null;
@@ -40,7 +41,7 @@ public class TranPurchaseController implements Initializable {
 	private TextField txtAmount;
 
 	@FXML
-	private TextField txtDesc;
+	private DatePicker dpDueDate;
 
 	Stage stage;
 
@@ -70,7 +71,7 @@ public class TranPurchaseController implements Initializable {
 		_tran.amount = new BigDecimal(txtAmount.getText());
 		_tran.description = txtDesc.getText();
 
-		command = new TranPurchase(_tran);
+		command = new TranWithdraw(_tran);
 		command.execute();
 
 	}
@@ -81,7 +82,7 @@ public class TranPurchaseController implements Initializable {
 		System.out.println("initialize");
 
 		Platform.runLater(() -> {
-			//getAllBalance();
+			getAllBalance();
 		});
 	}
 

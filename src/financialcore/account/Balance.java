@@ -79,7 +79,7 @@ public class Balance extends AbstractElement {
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
 
-		// dbAccess.INSTANCE.getDatastore().save(t);
+		//TODO dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="476.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.AccountCreateController">
+<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="405.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.AccountCreateController">
    <children>
       <Label fx:id="errorMessage" layoutX="147.0" layoutY="70.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" textFill="#fcf7f7" />
       <Label layoutX="33.0" layoutY="21.0" style="-fx-text-fill: #C8923A;" text="Create Account">
@@ -21,60 +21,28 @@
       </Label>
       <TextField fx:id="txtAccountNo" layoutX="151.0" layoutY="62.0" />
       
-      <Label layoutX="37.0" layoutY="63.0" style="-fx-text-fill: #C8923A;" text="Account no:">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="28.0" layoutY="136.0" style="-fx-text-fill: #C8923A;" text="Card name:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="txtCardName" layoutX="150.0" layoutY="135.0" />
-      <Label layoutX="37.0" layoutY="96.0" style="-fx-text-fill: #C8923A;" text="Card no:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Label layoutX="64.0" layoutY="70.0" style="-fx-text-fill: #C8923A;" text="Account no:" />
+      <Label layoutX="66.0" layoutY="137.0" style="-fx-text-fill: #C8923A;" text="Card name:" />
+      <Label layoutX="85.0" layoutY="104.0" style="-fx-text-fill: #C8923A;" text="Card no:" />
       <TextField fx:id="txtCardNo" layoutX="151.0" layoutY="99.0" />    
-       <Button fx:id="btnSave" layoutX="358.0" layoutY="357.0" mnemonicParsing="false" onAction="#saveAction" styleClass="my-button-dark" text="Save" />
-      <PasswordField fx:id="txtTotalLimit" layoutX="150.0" layoutY="171.0" />
-      <Label layoutX="39.0" layoutY="168.0" style="-fx-text-fill: #C8923A;" text="Total limit">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="198.0" style="-fx-text-fill: #C8923A;" text="Cash limit:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="txtCashLimit" layoutX="148.0" layoutY="201.0" />
-      <DatePicker layoutX="156.0" layoutY="237.0" prefHeight="27.0" prefWidth="176.0" promptText="dpStart" />
-      <Label layoutX="33.0" layoutY="238.0" style="-fx-text-fill: #C8923A;" text="Start date:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="277.0" style="-fx-text-fill: #C8923A;" text="End date:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <DatePicker layoutX="153.0" layoutY="276.0" prefHeight="27.0" prefWidth="183.0" promptText="dpEnd" />
-      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="398.0" prefHeight="151.0" prefWidth="361.0">
+       <Button fx:id="btnSave" layoutX="268.0" layoutY="341.0" mnemonicParsing="false" onAction="#saveAction" styleClass="my-button-dark" text="Save" />
+      <Label layoutX="71.0" layoutY="168.0" style="-fx-text-fill: #C8923A;" text="Total limit:" />
+      <Label layoutX="70.0" layoutY="204.0" style="-fx-text-fill: #C8923A;" text="Cash limit:" />
+      <DatePicker layoutX="150.0" layoutY="235.0" prefHeight="27.0" prefWidth="167.0" promptText="dpStart" />
+      <Label layoutX="70.0" layoutY="240.0" style="-fx-text-fill: #C8923A;" text="Start date:" />
+      <Label layoutX="77.0" layoutY="277.0" style="-fx-text-fill: #C8923A;" text="End date:" />
+      <DatePicker layoutX="150.0" layoutY="272.0" prefHeight="27.0" prefWidth="167.0" promptText="dpEnd" />
+      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="398.0" prefHeight="151.0" prefWidth="317.0">
         <columns>
           <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />
           <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />
         </columns>
       </TableView>
-      <PasswordField fx:id="txtCashLimit1" layoutX="151.0" layoutY="314.0" />
-      <Label layoutX="40.0" layoutY="311.0" style="-fx-text-fill: #C8923A;" text="Cust No:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnBrowseCus" layoutX="352.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveAction" styleClass="my-button-dark" text="..." />
+      <Label layoutX="84.0" layoutY="311.0" style="-fx-text-fill: #C8923A;" text="Cust No:" />
+      <Button fx:id="btnBrowseCus" layoutX="327.0" layoutY="306.0" mnemonicParsing="false" onAction="#saveAction" styleClass="my-button-dark" text="..." />
+      <TextField fx:id="txtCardName" layoutX="151.0" layoutY="132.0" />
+      <TextField fx:id="txtTotalLimit" layoutX="151.0" layoutY="163.0" />
+      <TextField fx:id="txtCashLimit" layoutX="151.0" layoutY="199.0" />
+      <TextField fx:id="txtCustNo" layoutX="149.0" layoutY="307.0" />
    </children>
 </Pane>

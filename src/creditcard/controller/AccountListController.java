@@ -142,6 +142,15 @@ public class AccountListController implements Initializable {
 	public void clickPurchase() {
 
 		try {
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			Parent root1 = (Parent) fxmlLoader1.load();
+			Stage stage1 = new Stage();
+			stage1.setScene(new Scene(root1));
+
+			TranPurchaseController controller = fxmlLoader1.<TranPurchaseController>getController();
+			//controller.setAccount(account);
+
+			stage1.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
