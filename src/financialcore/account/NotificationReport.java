@@ -1,8 +1,9 @@
 package financialcore.account;
 
-import financialcore.interfaces.NotificationI;
 
-public class NotificationReport implements NotificationI {
+public enum NotificationReport {
+
+	INSTANCE;
 
 	public void sendNotifictation(Object pData) {
 

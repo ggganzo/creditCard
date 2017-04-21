@@ -1,8 +1,8 @@
 package financialcore.account;
 
-import financialcore.interfaces.NotificationI;
+public enum NotificationTran {
 
-public class NotificationTran implements NotificationI {
+	INSTANCE;
 
 	public void sendNotifictation(Object pData) {
 

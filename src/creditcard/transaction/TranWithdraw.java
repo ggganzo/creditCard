@@ -4,7 +4,6 @@ import creditcard.model.CreditCardAccount;
 import financialcore.account.NotificationTran;
 import financialcore.account.TransactionTemplate;
 import financialcore.general.MyOwnException;
-import financialcore.interfaces.NotificationI;
 
 public class TranWithdraw implements TranCommand {
 
@@ -19,8 +18,9 @@ public class TranWithdraw implements TranCommand {
 	@Override
 	public void execute() throws MyOwnException {
 		account.cashWidthdraw(tranTemplate.amount, tranTemplate.description);
-		NotificationI notify = new NotificationTran();
-		notify.sendNotifictation(tranTemplate);
+		// NotificationI notify = new NotificationTran();
+		NotificationTran.INSTANCE.sendNotifictation(tranTemplate);
+		// notify.sendNotifictation(tranTemplate);
 	}
 
 }
