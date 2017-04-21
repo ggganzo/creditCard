@@ -149,7 +149,7 @@ public class AccountCreateController implements Initializable {
 		txtCashLimit.setText(String.valueOf(account.getBalanceHashMap().get(BalanceCode.LIMITCASH.toString())));
 		dpStart.setValue(account.getStartDate());
 		dpEnd.setValue(account.getEndDate());
-		txtCustNo.setText(String.valueOf(account.getCust().getPersonId()));
+		txtCustNo.setText(String.valueOf(account.getCustomer().getPersonId()));
 
 		initDataAndControls();
 
