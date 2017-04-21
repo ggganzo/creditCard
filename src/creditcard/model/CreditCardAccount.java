@@ -82,7 +82,7 @@ public class CreditCardAccount extends Account {
 	public CreditCardAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
 			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate) {
 
-		super(pCustNo, pAccountNo, "CreditCard", pCcy, pStartDate, pEndDate, pInterestRate);
+		//super(pCustNo, pAccountNo, "CreditCard", pCcy, pStartDate, pEndDate, pInterestRate);
 
 		cardNumber = pCardNumber;
 		cardName = pCardName;
