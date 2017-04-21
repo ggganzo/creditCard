@@ -40,6 +40,7 @@ public class WindowService {
 		
 		stage.setTitle(title);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 	}
 }

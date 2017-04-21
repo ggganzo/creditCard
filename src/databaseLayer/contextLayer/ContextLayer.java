@@ -13,11 +13,13 @@ public class ContextLayer {
     private BalanceContextLayer balanceContextLayer;
     private IContextLayer<Account> accountContextLayer;
     private PersonContextLayer personContextLayer;
+    private TransactionContextLayer transactionContextLayer;
 
     private ContextLayer(){
         balanceContextLayer = BalanceContextLayer.Balances();
         accountContextLayer = AccountContextLayer.Accounts();
         personContextLayer = PersonContextLayer.Persons();
+        transactionContextLayer = TransactionContextLayer.Transactions();
     }
 
     public static ContextLayer Model() {
@@ -34,5 +36,9 @@ public class ContextLayer {
     
     public PersonContextLayer Persons(){
         return personContextLayer;
+    }
+    
+    public TransactionContextLayer Transactions(){
+        return transactionContextLayer;
     }
 }

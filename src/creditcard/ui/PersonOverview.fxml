@@ -15,8 +15,8 @@
    <rowConstraints>
       <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="75.0" />
       <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="32.0" />
-      <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="260.0" />
-      <RowConstraints maxHeight="534.0" minHeight="234.0" prefHeight="234.0" />
+      <RowConstraints maxHeight="360.0" minHeight="10.0" prefHeight="360.0" />
+      <RowConstraints maxHeight="534.0" minHeight="134.0" prefHeight="134.0" />
    </rowConstraints>
    <children>
       <SplitPane prefHeight="304.0" prefWidth="800.0" GridPane.rowIndex="3">

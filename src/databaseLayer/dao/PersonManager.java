@@ -98,7 +98,7 @@ public class PersonManager implements IDataManager<Person> {
             throw new RuntimeException(ex);
         }
     }
-
+    
     @Override
     public boolean add(Person element) {
     	try (Connection connection = DBConnection.SQLiteConnection();

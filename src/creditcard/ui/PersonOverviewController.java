@@ -85,7 +85,7 @@ public class PersonOverviewController {
 
 		Customer selectedCustomer = getSelectedItem();
 		if (selectedCustomer == null) {
-			JOptionPane.showConfirmDialog(null, "You should select one of customer for edit");
+			JOptionPane.showMessageDialog(null, "You should select one of customer for edit");
 			return;
 		}
 
@@ -105,6 +105,4 @@ public class PersonOverviewController {
 			return null;
 		}
 	}
-	
-	
 }

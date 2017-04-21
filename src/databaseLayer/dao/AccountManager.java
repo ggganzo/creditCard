@@ -1,5 +1,6 @@
 package databaseLayer.dao;
 import financialcore.account.Account;
+import financialcore.customer.Customer;
 import databaseLayer.DBConnection;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ public class AccountManager implements IDataManager<Account>{
 
     @Override
     public Account getElement(int id) {
-        try (ResultSet resultSet = executeQuery("SELECT * FROM account WHERE accountid = " + id)) {
+        try (ResultSet resultSet = executeQuery("SELECT * FROM account WHERE number = " + id)) {
 
             while (resultSet.next()) {
                 return convertToAccount(resultSet);
@@ -52,7 +53,7 @@ public class AccountManager implements IDataManager<Account>{
     public boolean add(Account element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number) VALUES(?,?,?,?,?,?);")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid) VALUES(?,?,?,?,?,?,?);")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -69,7 +70,7 @@ public class AccountManager implements IDataManager<Account>{
     public boolean update(Account element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ? WHERE number = ?;")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ?, personid = ? WHERE number = ?;")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -105,6 +106,10 @@ public class AccountManager implements IDataManager<Account>{
         account.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
         account.setInterestRate(resultSet.getFloat("interestrate"));
         account.setType(resultSet.getString("type"));
+        
+        Customer customer = new Customer();
+        customer.setPersonId(resultSet.getLong("personid"));
+        account.setCustomer(customer);
 
         return account;
     }

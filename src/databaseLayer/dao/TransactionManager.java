@@ -48,7 +48,17 @@ public class TransactionManager implements IDataManager<Transaction> {
 
     @Override
     public List<Transaction> getElements(Object obj1, Object obj2) {
-        return null;
+    	 List<Transaction> transactions = new ArrayList<>();
+         try (ResultSet resultSet = executeQuery("SELECT * FROM c_transaction WHERE accountnumber =" + obj1.toString())) {
+
+             while (resultSet.next()) {
+                 transactions.add(convertToTransaction(resultSet));
+             }
+
+             return transactions;
+         } catch (Exception ex) {
+             throw new RuntimeException(ex);
+         }
     }
 
     @Override
@@ -64,9 +74,9 @@ public class TransactionManager implements IDataManager<Transaction> {
             statement.setBigDecimal(4, element.getAmount());
             statement.setString(5, element.getType());
             statement.setBigDecimal(6, element.getPostBalance());
-            statement.setString(7, element.getTranCode());
+            statement.setString(7, element.getTransactionCode());
             statement.setString(8, element.getDescription());
-            statement.setString(9, element.getTranDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            statement.setString(9, element.getTransactionDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
             return statement.executeUpdate() > 0;
 
@@ -94,9 +104,9 @@ public class TransactionManager implements IDataManager<Transaction> {
         transaction.setAmount(resultSet.getBigDecimal("amount"));
         transaction.setType(resultSet.getString("type"));
         transaction.setPostBalance(resultSet.getBigDecimal("postbalance"));
-        transaction.setTranCode(resultSet.getString("transactioncode"));
+        transaction.setTransactionCode(resultSet.getString("transactioncode"));
         transaction.setDescription(resultSet.getString("description"));
-        transaction.setTranDate(LocalDate.parse(resultSet.getString("transactiondate")));
+        transaction.setTransactionDate(LocalDate.parse(resultSet.getString("transactiondate")));
 
         return transaction;
     }

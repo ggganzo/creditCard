@@ -26,9 +26,9 @@ public class TransactionManagerTest {
         transaction.setAmount(tranAmount);
         transaction.setType("CASH");
 
-        transaction.setTranCode("BHGD-TGFD-1234");
+        transaction.setTransactionCode("BHGD-TGFD-1234");
         transaction.setDescription("CASH from ATM");
-        transaction.setTranDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDate.now());
 
 
         BalanceManager balanceManager = new BalanceManager();
