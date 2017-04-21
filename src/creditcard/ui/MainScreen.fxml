@@ -28,6 +28,9 @@
                   <Menu mnemonicParsing="false" text="Transaction">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#openTransactionView" text="View" />
+                        <MenuItem mnemonicParsing="false" onAction="#openTransactionPurchase" text="Purchase" />
+                        <MenuItem mnemonicParsing="false" onAction="#openTransactionRepayment" text="Repayment" />
+                        <MenuItem mnemonicParsing="false" onAction="#openTransactionWithDraw" text="with Draw" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Help">

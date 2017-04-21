@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="440.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.TranPurchaseController">
+<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.TranPurchaseController">
    <children>
       <Label fx:id="errorMessage" layoutX="147.0" layoutY="70.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" textFill="#fcf7f7" />
       <Label layoutX="33.0" layoutY="21.0" style="-fx-text-fill: #C8923A;" text="Purchase">
@@ -19,20 +19,20 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAccountNo" layoutX="148.0" layoutY="75.0" />
+      <TextField fx:id="txtAccountNo" layoutX="148.0" layoutY="75.0" prefHeight="31.0" prefWidth="238.0" />
       
       <Label layoutX="34.0" layoutY="76.0" style="-fx-text-fill: #C8923A;" text="Account no:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>    
-       <Button fx:id="btnSave" layoutX="149.0" layoutY="176.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Do" />
+       <Button fx:id="btnSave" layoutX="148.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Make transactioon" />
       <Label layoutX="39.0" layoutY="105.0" style="-fx-text-fill: #C8923A;" text="Amount:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="226.0" prefHeight="129.0" prefWidth="361.0">
+      <TableView fx:id="balanceTable" layoutX="148.0" layoutY="318.0" prefHeight="192.0" prefWidth="367.0">
         <columns>
           <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />
           <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />
@@ -43,7 +43,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTranAmount" layoutX="147.0" layoutY="108.0" />
-      <TextField fx:id="txtDesc" layoutX="148.0" layoutY="142.0" />
+      <TextField fx:id="txtTranAmount" layoutX="147.0" layoutY="108.0" prefHeight="31.0" prefWidth="108.0" />
+      <TextField fx:id="txtDesc" layoutX="148.0" layoutY="142.0" prefHeight="100.0" prefWidth="349.0" />
+      <Button fx:id="btnSave1" layoutX="400.0" layoutY="75.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="31.0" prefWidth="95.0" styleClass="my-button-dark" text="Check" />
    </children>
 </Pane>

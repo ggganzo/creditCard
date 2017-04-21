@@ -113,6 +113,40 @@ public class MainScreenController {
 		}
 	}
 	
+	
+	@FXML
+	private void openTransactionPurchase() {
+		try {
+			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void openTransactionRepayment() {
+		try {
+			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranRepayment.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void openTransactionWithDraw() {
+		try {
+			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranWithdraw.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public Pane getMainPane() {
 		return paneMain;
 	}

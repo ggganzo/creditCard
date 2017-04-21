@@ -99,7 +99,7 @@ public class AccountListController implements Initializable {
 	}
 
 	@FXML
-	public void clickAccountEdit(String text) {
+	public void clickAccountEdit() {
 
 		// Employee employee = DataAccessFacade.findEmployeeById(employeeid);
 
