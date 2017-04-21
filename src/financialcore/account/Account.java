@@ -84,7 +84,7 @@ public class Account extends AbstractElement implements AccountI {
 		this.setStartDate(pStartDate);
 		this.setEndDate(pEndDate);
 		Customer cust = null;
-		this.setCust(cust);
+		this.setCustomer(cust);
 	}
 
 	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,
@@ -127,11 +127,11 @@ public class Account extends AbstractElement implements AccountI {
 		this.endDate = endDate;
 	}
 
-	public Customer getCust() {
+	public Customer getCustomer() {
 		return cust;
 	}
 
-	public void setCust(Customer cust) {
+	public void setCustomer(Customer cust) {
 		this.cust = cust;
 	}
 

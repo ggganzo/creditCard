@@ -8,7 +8,7 @@ public class Customer extends Person {
 	public Customer(){
 		super(PersonType.Customer);
 	}
-
+	
 	public Customer(long pCustomerId, String pFirstName, String pLastName, int pAge, String pUserName, String pPassword) {
 		super(pCustomerId, pFirstName, pLastName, pAge, pUserName, pPassword, PersonType.Customer);
 	}

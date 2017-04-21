@@ -8,28 +8,30 @@ import databaseLayer.AbstractElement;
 
 public class Transaction extends AbstractElement {
 
-	private int tranNo;
-	private int accountNo;
+	private int transactionId;
+	private int accountNumber;
 	private String balanceCode;
 	private BigDecimal amount;
 	private String type;
 	private BigDecimal postBalance;
-	private String tranCode;
+	private String transanctionCode;
 	private String description;
-	private LocalDate tranDate;
+	private LocalDate transactionDate;
 
+
+	public String getTransactionCode() {
+		return transanctionCode;
+}
 	public Transaction() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDate localDate = LocalDate.now();
 		System.out.println(dtf.format(localDate)); // 2016/11/16
 	}
 
-	public String getTranCode() {
-		return tranCode;
-	}
+	
 
-	public void setTranCode(String tranCode) {
-		this.tranCode = tranCode;
+	public void setTransactionCode(String tranCode) {
+		this.transanctionCode = tranCode;
 	}
 
 	public String getDescription() {
@@ -41,19 +43,19 @@ public class Transaction extends AbstractElement {
 	}
 
 	public int getTransactionNumber() {
-		return tranNo;
+		return transactionId;
 	}
 
 	public void setTransactionNumber(int tranNo) {
-		this.tranNo = tranNo;
+		this.transactionId = tranNo;
 	}
 
 	public int getAccountNumber() {
-		return accountNo;
+		return accountNumber;
 	}
 
 	public void setAccountNumber(int accountNo) {
-		this.accountNo = accountNo;
+		this.accountNumber = accountNo;
 	}
 
 	public String getBalanceCode() {
@@ -88,12 +90,12 @@ public class Transaction extends AbstractElement {
 		this.postBalance = postBalance;
 	}
 
-	public LocalDate getTranDate() {
-		return tranDate;
+	public LocalDate getTransactionDate() {
+		return transactionDate;
 	}
 
-	public void setTranDate(LocalDate tranDate) {
-		this.tranDate = tranDate;
+	public void setTransactionDate(LocalDate tranDate) {
+		this.transactionDate = tranDate;
 	}
 
 }

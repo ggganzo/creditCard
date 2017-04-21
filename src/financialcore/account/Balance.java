@@ -59,7 +59,7 @@ public class Balance extends AbstractElement {
 		t.setBalanceCode(this.getBalanceCode());
 		t.setAmount(pTranAmount);
 		t.setType("INC");
-		t.setTranCode(pTranCode);
+		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
 
@@ -75,7 +75,7 @@ public class Balance extends AbstractElement {
 		t.setBalanceCode(this.getBalanceCode());
 		t.setAmount(pTranAmount);
 		t.setType("DEC");
-		t.setTranCode(pTranCode);
+		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
 
