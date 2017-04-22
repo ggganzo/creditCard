@@ -23,9 +23,16 @@
          <items>
             <TableView fx:id="tbAccaunt" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="clAccountNumber" prefWidth="150.0" text="Account number" />
+                <TableColumn fx:id="clmCreditcardNumber" minWidth="0.0" prefWidth="0.0" text="Creditcard number" />
+                  <TableColumn fx:id="clmCreditcardName" prefWidth="75.0" text="Creditcard name" />
+                  <TableColumn fx:id="clmCurrency" prefWidth="75.0" text="Currency" />
+                  <TableColumn fx:id="clmExperyDate" prefWidth="75.0" text="Expery date" />
+                  <TableColumn fx:id="clmStatus" prefWidth="75.0" text="Status" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
          </items>
       </SplitPane>

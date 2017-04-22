@@ -13,12 +13,12 @@ import creditcard.model.CreditCardAccount;
  */
 public class AccountContextLayer extends IContextLayer<CreditCardAccount> {
 
-    private static IContextLayer instance = new AccountContextLayer();
+    private static AccountContextLayer instance = new AccountContextLayer();
     private IDataManager<CreditCardAccount> dataManager = null;
 
     private AccountContextLayer(){}
 
-    public static IContextLayer<CreditCardAccount> Accounts(){
+    public static AccountContextLayer Accounts(){
         return instance;
     }
 
@@ -30,6 +30,10 @@ public class AccountContextLayer extends IContextLayer<CreditCardAccount> {
     @Override
     public List<CreditCardAccount> getElements() {
         return getDataManager().getElements();
+    }
+    
+    public List<CreditCardAccount> getElementsByPerson(long personId) {
+        return getDataManager().getElements(personId, null);
     }
 
     @Override

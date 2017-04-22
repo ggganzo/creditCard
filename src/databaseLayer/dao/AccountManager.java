@@ -45,7 +45,17 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
 
     @Override
     public List<CreditCardAccount> getElements(Object obj1, Object obj2) {
-        return null;
+    	List<CreditCardAccount> accounts = new ArrayList<>();
+        try (ResultSet resultSet = executeQuery("SELECT * FROM account WHERE personid = "+obj1.toString())) {
+
+            while (resultSet.next()) {
+                accounts.add(convertToAccount(resultSet));
+            }
+
+            return accounts;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

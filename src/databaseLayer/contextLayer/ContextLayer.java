@@ -12,7 +12,7 @@ public class ContextLayer {
     private static ContextLayer instance = new ContextLayer();
     
     private BalanceContextLayer balanceContextLayer;
-    private IContextLayer<CreditCardAccount> accountContextLayer;
+    private AccountContextLayer accountContextLayer;
     private PersonContextLayer personContextLayer;
     private TransactionContextLayer transactionContextLayer;
 
@@ -31,7 +31,7 @@ public class ContextLayer {
         return balanceContextLayer;
     }
 
-    public IContextLayer<CreditCardAccount> Accounts(){
+    public AccountContextLayer Accounts(){
         return accountContextLayer;
     }
     
