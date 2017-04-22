@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import databaseLayer.contextLayer.ContextLayer;
 import financialcore.account.Balance;
 import financialcore.account.Transaction;
 import financialcore.customer.Customer;
@@ -164,8 +165,8 @@ public class CreditFacade {
 	}
 
 	private CreditCardAccount getCCAccountDetail(String pAccountNo) {
-		// TODO
-		CreditCardAccount account = null;
+
+		CreditCardAccount account = ContextLayer.Model().Accounts().getElement(Integer.parseInt(pAccountNo));
 		return account;
 	}
 }
