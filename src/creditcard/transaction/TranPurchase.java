@@ -10,14 +10,14 @@ public class TranPurchase implements TranCommand {
 	CreditCardAccount account = null;
 	TransactionTemplate tranTemplate;
 
-	public TranPurchase(TransactionTemplate pTranTemplate) {
+	public TranPurchase(TransactionTemplate pTranTemplate, CreditCardAccount account) {
 		tranTemplate = pTranTemplate;
-		account = null;// TODO
+		this.account = account;
 	}
 
 	@Override
 	public void execute() throws MyOwnException {
-		account.purchase(tranTemplate.amount, tranTemplate.description);
+		this.account.purchase(tranTemplate.amount, tranTemplate.description);
 		NotificationTran.INSTANCE.sendNotifictation(tranTemplate);
 		//NotificationI notify = new NotificationTran();
 		//notify.sendNotifictation(tranTemplate);

@@ -79,10 +79,10 @@ public class CreditCardAccount extends Account {
 		this.accountNumber = accountNo;
 	}
 
-	public CreditCardAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
+	public CreditCardAccount(int pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
 			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate) {
 
-		//super(pCustNo, pAccountNo, "CreditCard", pCcy, pStartDate, pEndDate, pInterestRate);
+		super(pCustNo, pAccountNo, "CreditCard", pCcy, pStartDate, pEndDate, pInterestRate);
 
 		cardNumber = pCardNumber;
 		cardName = pCardName;
@@ -92,13 +92,13 @@ public class CreditCardAccount extends Account {
 		stateOpened = new StateOpen(this);
 		stateClosed = new StateClose(this);
 
-		if (super.getStatus().compareTo("NEW") == 0) {
+		/*if (super.getStatus().compareTo("NEW") == 0) {
 			stateCurrent = stateNew;
-		} else if (super.getStatus().compareTo("OPENED") == 0) {
+		} else if (super.getStatus().compareTo("OPENED") == 0) {*/
 			stateCurrent = stateOpened;
-		} else if (super.getStatus().compareTo("CLOSED") == 0) {
+		/*} else if (super.getStatus().compareTo("CLOSED") == 0) {
 			stateCurrent = stateClosed;
-		}
+		}*/
 	}
 
 	public void saveAccount() throws MyOwnException {

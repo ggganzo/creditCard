@@ -74,7 +74,7 @@ public class CreditFacade {
 
 	}
 
-	public void createAccount(String pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
+	public void createAccount(int pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
 			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate, BigDecimal pTotalLimit,
 			BigDecimal pCashLImit) throws MyOwnException {
 

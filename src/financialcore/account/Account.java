@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 import databaseLayer.AbstractElement;
+import databaseLayer.contextLayer.ContextLayer;
 import financialcore.customer.Customer;
 import financialcore.general.MyOwnException;
 import financialcore.interfaces.AccountI;
@@ -75,7 +76,7 @@ public class Account extends AbstractElement implements AccountI {
 		// TODO add Baaz
 	}
 
-	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
+	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
 			LocalDate pEndDate) {
 
 		this.setAccountNumber(pAccountNo);
@@ -83,11 +84,11 @@ public class Account extends AbstractElement implements AccountI {
 		this.setCurrency(pCcy);
 		this.setStartDate(pStartDate);
 		this.setEndDate(pEndDate);
-		Customer cust = null;
+		Customer cust = (Customer)ContextLayer.Model().Persons().getElement(pCustNo);
 		this.setCustomer(cust);
 	}
 
-	public Account(String pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,
+	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,
 			float pInterestRate) {
 
 		this(pCustNo, pAccountNo, pType, pCcy, pStartDate, pEndDate);

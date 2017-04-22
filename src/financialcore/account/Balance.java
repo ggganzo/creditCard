@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import databaseLayer.AbstractElement;
+import databaseLayer.ElementState;
+import databaseLayer.contextLayer.ContextLayer;
 import financialcore.config.Sequence;
 
 /**
@@ -62,7 +64,9 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-
+		
+		t.setElementState(ElementState.Inserted);
+		ContextLayer.Model().Transactions().save(t);
 		// dbAccess.INSTANCE.getDatastore().save(t);
 
 	}
@@ -78,7 +82,10 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-
+		
+		t.setElementState(ElementState.Inserted);
+		ContextLayer.Model().Transactions().save(t);
+		
 		//TODO dbAccess.INSTANCE.getDatastore().save(t);
 
 	}

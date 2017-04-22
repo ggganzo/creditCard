@@ -90,7 +90,7 @@ public class AccountCreateController implements Initializable {
 		BigDecimal _cashLimit = new BigDecimal(txtCashLimit.getText());
 		LocalDate _startDate = dpStart.getValue();
 		LocalDate _endDate = dpEnd.getValue();
-		String _custNo = txtCustNo.getText();
+		int _custNo = Integer.parseInt(txtCustNo.getText());
 		float _interestRate = 20;
 
 		if (booleanEdit) {

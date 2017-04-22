@@ -6,32 +6,34 @@ import databaseLayer.dao.IDataManager;
 
 import java.util.List;
 
+import creditcard.model.CreditCardAccount;
+
 /**
  * Created by orifjon9 on 4/17/2017.
  */
-public class AccountContextLayer extends IContextLayer<Account> {
+public class AccountContextLayer extends IContextLayer<CreditCardAccount> {
 
     private static IContextLayer instance = new AccountContextLayer();
-    private IDataManager<Account> dataManager = null;
+    private IDataManager<CreditCardAccount> dataManager = null;
 
     private AccountContextLayer(){}
 
-    public static IContextLayer<Account> Accounts(){
+    public static IContextLayer<CreditCardAccount> Accounts(){
         return instance;
     }
 
     @Override
-    public Account getElement(int id) {
+    public CreditCardAccount getElement(int id) {
         return getDataManager().getElement(id);
     }
 
     @Override
-    public List<Account> getElements() {
+    public List<CreditCardAccount> getElements() {
         return getDataManager().getElements();
     }
 
     @Override
-    public IDataManager<Account> getDataManager() {
+    public IDataManager<CreditCardAccount> getDataManager() {
         if (dataManager == null) {
             dataManager = DataStoreFactory.getInstance().createManager(Account.class);
         }
