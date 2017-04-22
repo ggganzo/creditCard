@@ -26,7 +26,7 @@
             <Font size="16.0" />
          </font>
       </Label>    
-       <Button fx:id="btnSave" layoutX="148.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Make transactioon" />
+       <Button fx:id="btnMakeTransaction" disable="true" layoutX="148.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Make transactioon" />
       <Label layoutX="39.0" layoutY="105.0" style="-fx-text-fill: #C8923A;" text="Amount:">
          <font>
             <Font size="16.0" />
@@ -34,7 +34,7 @@
       </Label>
       <TableView fx:id="balanceTable" layoutX="148.0" layoutY="318.0" prefHeight="192.0" prefWidth="367.0">
         <columns>
-          <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />
+          <TableColumn fx:id="colBalanceCode" prefWidth="161.0" text="Balance code" />
           <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />
         </columns>
       </TableView>
@@ -43,8 +43,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTranAmount" layoutX="147.0" layoutY="108.0" prefHeight="31.0" prefWidth="108.0" />
+      <TextField fx:id="txtAmount" layoutX="147.0" layoutY="108.0" prefHeight="31.0" prefWidth="108.0" />
       <TextField fx:id="txtDesc" layoutX="148.0" layoutY="142.0" prefHeight="100.0" prefWidth="349.0" />
-      <Button fx:id="btnSave1" layoutX="400.0" layoutY="75.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="31.0" prefWidth="95.0" styleClass="my-button-dark" text="Check" />
+      <Button fx:id="btnCheckAccount" layoutX="400.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkAccount" prefHeight="31.0" prefWidth="95.0" styleClass="my-button-dark" text="Check" />
    </children>
 </Pane>

@@ -39,6 +39,9 @@ public class TranStatementController implements Initializable {
 
 	@FXML
 	private TextField txtAmount;
+	
+	@FXML
+	private TextField txtDesc;
 
 	@FXML
 	private DatePicker dpDueDate;

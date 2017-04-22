@@ -49,7 +49,7 @@ public class BalanceManager implements IDataManager<Balance> {
         String balanceCode = (String) obj2;
 
         String sql = "SELECT * FROM balance WHERE accountnumber = " + accountNumber;
-        if(balanceCode.trim().length() > 0){
+        if(obj2!=null){
             sql+= " AND code= '" + balanceCode + "'";
         }
 

@@ -1,6 +1,4 @@
 package databaseLayer.dao;
-import financialcore.account.Account;
-import financialcore.customer.Customer;
 import databaseLayer.DBConnection;
 
 import java.sql.*;
@@ -8,19 +6,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import creditcard.model.CreditCardAccount;
 
 /**
  * Created by orifjon9 on 4/17/2017.
  */
-public class AccountManager implements IDataManager<Account>{
+
+public class AccountManager implements IDataManager<CreditCardAccount>{
 
     @Override
-    public Account getElement(int id) {
+    public CreditCardAccount getElement(int id) {
         try (ResultSet resultSet = executeQuery("SELECT * FROM account WHERE number = " + id)) {
 
             while (resultSet.next()) {
                 return convertToAccount(resultSet);
-
             }
 
             return null;
@@ -30,8 +29,8 @@ public class AccountManager implements IDataManager<Account>{
     }
 
     @Override
-    public List<Account> getElements() {
-        List<Account> accounts = new ArrayList<>();
+    public List<CreditCardAccount> getElements() {
+        List<CreditCardAccount> accounts = new ArrayList<>();
         try (ResultSet resultSet = executeQuery("SELECT * FROM account")) {
 
             while (resultSet.next()) {
@@ -45,15 +44,15 @@ public class AccountManager implements IDataManager<Account>{
     }
 
     @Override
-    public List<Account> getElements(Object obj1, Object obj2) {
+    public List<CreditCardAccount> getElements(Object obj1, Object obj2) {
         return null;
     }
 
     @Override
-    public boolean add(Account element) {
+    public boolean add(CreditCardAccount element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid) VALUES(?,?,?,?,?,?,?);")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid, cardnumber, cardname) VALUES(?,?,?,?,?,?,?,?,?);")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -67,10 +66,10 @@ public class AccountManager implements IDataManager<Account>{
     }
 
     @Override
-    public boolean update(Account element) {
+    public boolean update(CreditCardAccount element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ?, personid = ? WHERE number = ?;")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ?, personid = ?, cardnumber = ?, cardname = ? WHERE number = ?;")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -84,33 +83,36 @@ public class AccountManager implements IDataManager<Account>{
     }
 
     @Override
-    public boolean delete(Account element) {
+    public boolean delete(CreditCardAccount element) {
         return executeUpdate("DELETE FROM account WHERE number = " + element.getAccountNumber()) > 0;
     }
 
-    private void setParameters(PreparedStatement statement, Account account) throws SQLException {
+    private void setParameters(PreparedStatement statement, CreditCardAccount account) throws SQLException {
         statement.setString(1, account.getCurrency());
         statement.setString(2, account.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         statement.setString(3, account.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         statement.setFloat(4, account.getInterestRate());
         statement.setString(5, account.getType());
-        statement.setInt(6, account.getAccountNumber());
+        statement.setString(6, account.getCardNumber());
+        statement.setString(7, account.getCardName());
+        statement.setInt(8, account.getAccountNumber());
     }
 
-    private Account convertToAccount(ResultSet resultSet) throws SQLException{
-        Account account = new Account();
-
-        //account.setId(resultSet.getInt("accountid"));
-        account.setAccountNumber(resultSet.getInt("number"));
-        account.setStartDate(LocalDate.parse(resultSet.getString("startdate")));
-        account.setEndDate(LocalDate.parse(resultSet.getString("enddate")));
-        account.setInterestRate(resultSet.getFloat("interestrate"));
+    private CreditCardAccount convertToAccount(ResultSet resultSet) throws SQLException{
+    	CreditCardAccount account = new CreditCardAccount(
+    			resultSet.getInt("personid"),
+    			resultSet.getString("cardnumber"), 
+    			resultSet.getString("cardname"), 
+    			resultSet.getInt("number"),
+    			resultSet.getString("currency"),
+    			LocalDate.parse(resultSet.getString("startdate")),
+    			LocalDate.parse(resultSet.getString("enddate")),
+    			resultSet.getFloat("interestrate"));
+    	
         account.setType(resultSet.getString("type"));
+       // account.setStatus("OPENED");
+        //TO DO
         
-        Customer customer = new Customer();
-        customer.setPersonId(resultSet.getLong("personid"));
-        account.setCustomer(customer);
-
         return account;
     }
 }

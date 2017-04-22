@@ -1,5 +1,6 @@
 package databaseLayer.contextLayer;
 
+import creditcard.model.CreditCardAccount;
 import databaseLayer.dao.PersonManager;
 import financialcore.account.Account;
 import financialcore.customer.Person;
@@ -11,7 +12,7 @@ public class ContextLayer {
     private static ContextLayer instance = new ContextLayer();
     
     private BalanceContextLayer balanceContextLayer;
-    private IContextLayer<Account> accountContextLayer;
+    private IContextLayer<CreditCardAccount> accountContextLayer;
     private PersonContextLayer personContextLayer;
     private TransactionContextLayer transactionContextLayer;
 
@@ -30,7 +31,7 @@ public class ContextLayer {
         return balanceContextLayer;
     }
 
-    public IContextLayer<Account> Accounts(){
+    public IContextLayer<CreditCardAccount> Accounts(){
         return accountContextLayer;
     }
     
