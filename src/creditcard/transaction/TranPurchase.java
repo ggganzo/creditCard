@@ -16,12 +16,10 @@ public class TranPurchase implements TranCommand {
 	}
 
 	@Override
-	public void execute() throws MyOwnException {
+	public boolean execute() throws MyOwnException {
 		this.account.purchase(tranTemplate.amount, tranTemplate.description);
 		NotificationTran.INSTANCE.sendNotifictation(tranTemplate);
-		//NotificationI notify = new NotificationTran();
-		//notify.sendNotifictation(tranTemplate);
-
+		return true;
 	}
 
 }

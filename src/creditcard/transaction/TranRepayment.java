@@ -9,17 +9,16 @@ public class TranRepayment implements TranCommand {
 	CreditCardAccount account = null;
 	TransactionTemplate tranTemplate;
 
-	public TranRepayment(TransactionTemplate pTranTemplate) {
+	public TranRepayment(TransactionTemplate pTranTemplate, CreditCardAccount pAccount) {
 		tranTemplate = pTranTemplate;
-		account = null;// TODO
+		account = pAccount;
 	}
 
 	@Override
-	public void execute() throws MyOwnException {
+	public boolean execute() throws MyOwnException {
 		account.repayment(tranTemplate.amount, tranTemplate.description);
 		NotificationTran.INSTANCE.sendNotifictation(tranTemplate);
-		// NotificationI notify = new NotificationTran();
-		// notify.sendNotifictation(tranTemplate);
+		return true;
 	}
 
 }

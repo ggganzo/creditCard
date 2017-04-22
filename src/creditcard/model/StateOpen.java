@@ -51,10 +51,16 @@ public class StateOpen implements State {
 
 		account.checkBalance();
 
-		Balance balAvailable = account.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
+		Balance balTotalLImit = account.getBalanceHashMap().get(BalanceCode.LIMIT.toString());
 		Balance balPurchase = account.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
+		Balance balCash = account.getBalanceHashMap().get(BalanceCode.CASH.toString());
 
-		balAvailable.decrBalance(account.getAccountNo(), pAmount, "PURCHASE", TranDesc);
+		if (balTotalLImit.getBalance().compareTo(pAmount.add(balPurchase.getBalance()).add(balCash.getBalance())) < 0) {
+			throw new MyOwnException(" Available balance is higher than balance");
+		}
+
+		// balAvailable.decrBalance(account.getAccountNo(), pAmount, "PURCHASE",
+		// TranDesc);
 		balPurchase.incrBalance(account.getAccountNo(), pAmount, "PURCHASE", TranDesc);
 
 	}
@@ -62,10 +68,21 @@ public class StateOpen implements State {
 	@Override
 	public void cashWidthdraw(BigDecimal pAmount, String TranDesc) throws MyOwnException {
 		account.checkBalance();
-		Balance balAvailable = account.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
+		Balance balTotalLImit = account.getBalanceHashMap().get(BalanceCode.LIMIT.toString());
+		Balance balPurchase = account.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
 		Balance balCash = account.getBalanceHashMap().get(BalanceCode.CASH.toString());
+		Balance balCashLimit = account.getBalanceHashMap().get(BalanceCode.LIMITCASH.toString());
 
-		balAvailable.decrBalance(account.getAccountNo(), pAmount, "WITHDRAW", TranDesc);
+		if (balTotalLImit.getBalance().compareTo(pAmount.add(balPurchase.getBalance()).add(balCash.getBalance())) < 0) {
+			throw new MyOwnException(" Available balance is higher than balance");
+		}
+
+		if (balCashLimit.getBalance().compareTo(pAmount.add(balCash.getBalance())) < 0) {
+			throw new MyOwnException(" Cash limit is negative");
+		}
+
+		// balAvailable.decrBalance(account.getAccountNo(), pAmount, "WITHDRAW",
+		// TranDesc);
 		balCash.incrBalance(account.getAccountNo(), pAmount, "WITHDRAW", TranDesc);
 
 	}
@@ -77,9 +94,11 @@ public class StateOpen implements State {
 		Balance balCash = account.getBalanceHashMap().get(BalanceCode.CASH.toString());
 		Balance balPurchase = account.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
 
-		Balance balAvailable = account.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
+		// Balance balAvailable =
+		// account.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
 
-		balAvailable.decrBalance(account.getAccountNo(), pAmount, "REPAYMENT", TranDesc);
+		// balAvailable.decrBalance(account.getAccountNo(), pAmount,
+		// "REPAYMENT", TranDesc);
 
 		if (balCash.getBalance().compareTo(pAmount) > 0) {
 

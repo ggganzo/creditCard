@@ -10,17 +10,16 @@ public class TranWithdraw implements TranCommand {
 	CreditCardAccount account = null;
 	TransactionTemplate tranTemplate;
 
-	public TranWithdraw(TransactionTemplate pTranTemplate) {
+	public TranWithdraw(TransactionTemplate pTranTemplate, CreditCardAccount pAccount) {
 		tranTemplate = pTranTemplate;
-		account = null;// TODO
+		account = pAccount;
 	}
 
 	@Override
-	public void execute() throws MyOwnException {
+	public boolean execute() throws MyOwnException {
 		account.cashWidthdraw(tranTemplate.amount, tranTemplate.description);
-		// NotificationI notify = new NotificationTran();
 		NotificationTran.INSTANCE.sendNotifictation(tranTemplate);
-		// notify.sendNotifictation(tranTemplate);
+		return true;
 	}
 
 }

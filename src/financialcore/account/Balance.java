@@ -64,10 +64,12 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-		
+		t.setPostBalance(this.getBalance());
+
 		t.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Transactions().save(t);
-		// dbAccess.INSTANCE.getDatastore().save(t);
+
+		saveBalance();
 
 	}
 
@@ -82,11 +84,19 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-		
+		t.setPostBalance(this.getBalance());
+
 		t.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Transactions().save(t);
-		
-		//TODO dbAccess.INSTANCE.getDatastore().save(t);
+
+		saveBalance();
+
+	}
+
+	private void saveBalance() {
+
+		this.setElementState(ElementState.Updated);
+		ContextLayer.Model().Balances().save(this);
 
 	}
 }

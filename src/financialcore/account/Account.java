@@ -2,13 +2,15 @@ package financialcore.account;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import databaseLayer.AbstractElement;
 import databaseLayer.contextLayer.ContextLayer;
 import financialcore.customer.Customer;
 import financialcore.general.MyOwnException;
 import financialcore.interfaces.AccountI;
-import jdk.nashorn.internal.ir.annotations.Reference;
 
 /**
  * Created by ganzo on 4/13/17.
@@ -36,8 +38,7 @@ public class Account extends AbstractElement implements AccountI {
 		this.status = status;
 	}
 
-	@Reference
-	private HashMap<String, Balance> balanceHashMap = new HashMap<>();
+	private Map<String, Balance> balanceHashMap = new HashMap<String, Balance>();
 
 	public float getInterestRate() {
 		return interestRate;
@@ -56,7 +57,7 @@ public class Account extends AbstractElement implements AccountI {
 	}
 
 	@Override
-	public HashMap<String, Balance> getBalanceHashMap() {
+	public Map<String, Balance> getBalanceHashMap() {
 		return balanceHashMap;
 	}
 
@@ -76,16 +77,22 @@ public class Account extends AbstractElement implements AccountI {
 		// TODO add Baaz
 	}
 
-	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate,
-			LocalDate pEndDate) {
+	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate) {
 
 		this.setAccountNumber(pAccountNo);
 		this.setType(pType);
 		this.setCurrency(pCcy);
 		this.setStartDate(pStartDate);
 		this.setEndDate(pEndDate);
-		Customer cust = (Customer)ContextLayer.Model().Persons().getElement(pCustNo);
+		Customer cust = (Customer) ContextLayer.Model().Persons().getElement(pCustNo);
 		this.setCustomer(cust);
+
+		List<Balance> balanceList = ContextLayer.Model().Balances().getElementsByAccount(getAccountNumber());
+
+		if (balanceList != null) {
+
+			balanceHashMap = balanceList.stream().collect(Collectors.toMap(Balance::getBalanceCode, item -> item));
+		}
 	}
 
 	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate,

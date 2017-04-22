@@ -83,7 +83,7 @@ public class AccountCreateController implements Initializable {
 			return;
 		}
 
-		int _accountNo = Integer.valueOf(txtAccountNo.getText());
+		String _accountNo = txtAccountNo.getText();
 		String _cardNo = txtCardNo.getText();
 		String _cardName = txtCardName.getText();
 		BigDecimal _totalLimit = new BigDecimal(txtTotalLimit.getText());

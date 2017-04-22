@@ -10,18 +10,11 @@ import creditcard.model.CreditCardAccount;
 import creditcard.model.CreditFacade;
 import financialcore.account.Transaction;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -78,7 +71,7 @@ public class TranListController implements Initializable {
 
 	private void getAccountList() {
 		System.out.println("getAccountList: TranlistController: ");
-		accountList = facade.getTransactionList(cAccount.getAccountNo());
+		accountList = facade.getTransactionList(String.valueOf(cAccount.getAccountNo()));
 	}
 
 	public void initData(CreditCardAccount cAccount) {

@@ -80,9 +80,9 @@ public class CreditCardAccount extends Account {
 	}
 
 	@Override
-	public void setStatus(String status){
+	public void setStatus(String status) {
 		super.setStatus(status);
-		
+
 		stateNew = new StateNew(this);
 		stateOpened = new StateOpen(this);
 		stateClosed = new StateClose(this);
@@ -95,7 +95,7 @@ public class CreditCardAccount extends Account {
 			stateCurrent = stateClosed;
 		}
 	}
-	
+
 	public CreditCardAccount(int pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
 			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate) {
 
@@ -105,7 +105,6 @@ public class CreditCardAccount extends Account {
 		cardName = pCardName;
 		accountNumber = pAccountNo;
 
-		
 	}
 
 	public void saveAccount() throws MyOwnException {
@@ -124,15 +123,10 @@ public class CreditCardAccount extends Account {
 		// super.saveAccount();
 		stateCurrent.openAccount();
 
-		super.setStatus("OPEN");
+		super.setStatus("OPENED");
 		super.updateAccount();
 
 		stateCurrent = stateOpened;
-
-		// if (super.getStatus().compareTo("NEW") == 0) {
-		// super.openAccount();
-		// } else
-		// throw new MyOwnException("Status must be New");
 
 	}
 
@@ -142,13 +136,8 @@ public class CreditCardAccount extends Account {
 
 		super.setStatus("CLOSED");
 		super.updateAccount();
+
 		stateCurrent = stateClosed;
-
-		// if (super.getStatus().compareTo("CLOSED") != 0) {
-		// super.openAccount();
-		// } else
-		// throw new MyOwnException("Account already closed");
-
 	}
 
 	public void createBalances() {
@@ -187,79 +176,16 @@ public class CreditCardAccount extends Account {
 	public void purchase(BigDecimal pAmount, String TranDesc) throws MyOwnException {
 
 		stateCurrent.purchase(pAmount, TranDesc);
-		// TODO send notification
-
-		// if (super.getStatus().compareTo("OPENED") != 0)
-		// throw new MyOwnException("Account status must be Opened");
-
-		// checkBalance();
-
-		// Balance balAvailable =
-		// super.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
-		// Balance balPurchase =
-		// super.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
-
-		// balAvailable.decrBalance(super.getAccountNo(), pAmount, "PURCHASE",
-		// TranDesc);
-		// balPurchase.incrBalance(super.getAccountNo(), pAmount, "PURCHASE",
-		// TranDesc);
 	}
 
 	public void cashWidthdraw(BigDecimal pAmount, String TranDesc) throws MyOwnException {
 
 		stateCurrent.cashWidthdraw(pAmount, TranDesc);
-
-		// TODO send notification
-
-		// if (super.getStatus().compareTo("OPENED") != 0)
-		// throw new MyOwnException("Account status must be Opened");
-		// checkBalance();
-
-		// Balance balAvailable =
-		// super.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
-		// Balance balCash =
-		// super.getBalanceHashMap().get(BalanceCode.CASH.toString());
-
-		// balAvailable.decrBalance(super.getAccountNo(), pAmount, "WITHDRAW",
-		// TranDesc);
-		// balCash.incrBalance(super.getAccountNo(), pAmount, "WITHDRAW",
-		// TranDesc);
 	}
 
 	public void repayment(BigDecimal pAmount, String TranDesc) throws MyOwnException {
 
 		stateCurrent.repayment(pAmount, TranDesc);
-
-		// TODO send notification
-
-		// checkBalance();
-
-		// Balance balCash =
-		// super.getBalanceHashMap().get(BalanceCode.CASH.toString());
-		// Balance balPurchase =
-		// super.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
-
-		// Balance balAvailable =
-		// super.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
-
-		// balAvailable.decrBalance(super.getAccountNo(), pAmount, "REPAYMENT",
-		// TranDesc);
-
-		// if (balCash.getBalance().compareTo(pAmount) > 0) {
-
-		// balCash.decrBalance(super.getAccountNo(), pAmount, "REPAYMENT",
-		// TranDesc);
-
-		// } else {
-
-		// balCash.decrBalance(super.getAccountNo(), balCash.getBalance(),
-		// "REPAYMENT", TranDesc);
-		// balPurchase.decrBalance(super.getAccountNo(),
-		// pAmount.subtract(balCash.getBalance()), "REPAYMENT",
-		// TranDesc);
-
-		// }
-
 	}
 
 	public void createStatement(BigDecimal pAmount) {

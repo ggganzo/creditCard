@@ -10,18 +10,17 @@ public class TranGenerateStatement implements TranCommand {
 	CreditCardAccount account = null;
 	TransactionTemplate tranTemplate;
 
-	public TranGenerateStatement(TransactionTemplate pTranTemplate) {
+	public TranGenerateStatement(TransactionTemplate pTranTemplate, CreditCardAccount pAccount) {
 		tranTemplate = pTranTemplate;
-		account = null;// TODO
+		this.account = pAccount;
 	}
 
 	@Override
-	public void execute() throws MyOwnException {
-		// account.cashWidthdraw(tranTemplate.amount, tranTemplate.description);
+	public boolean execute() throws MyOwnException {
+
 		account.createStatement(tranTemplate.amount);
-		// NotificationI notify = new NotificationTran();
 		NotificationTran.INSTANCE.sendStatement(tranTemplate);
-		// notify.sendNotifictation(tranTemplate);
+		return true;
 	}
 
 }

@@ -18,7 +18,7 @@
             <Font size="20.0" />
          </font>
       </Label>  
-      <TableView fx:id="accountTable" layoutX="47.0" layoutY="54.0" prefHeight="287.0" prefWidth="655.0">
+      <TableView fx:id="accountTable" layoutX="47.0" layoutY="54.0" onMouseClicked="#clickTable" prefHeight="287.0" prefWidth="655.0">
          <columns>
         	<TableColumn fx:id="colAccountNo" prefWidth="100.0" text="Account no" />
         	<TableColumn fx:id="colCardNo" prefWidth="150.0" text="Card no" /> 
