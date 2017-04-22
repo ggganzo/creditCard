@@ -52,7 +52,7 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
     public boolean add(CreditCardAccount element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid, cardnumber, cardname) VALUES(?,?,?,?,?,?,?,?,?);")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid, cardnumber, cardname, status) VALUES(?,?,?,?,?,?,?,?,?,?);")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -69,7 +69,7 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
     public boolean update(CreditCardAccount element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ?, personid = ?, cardnumber = ?, cardname = ? WHERE number = ?;")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE account SET  currency = ?,  startdate = ?, enddate = ?, interestrate = ?, type = ?, personid = ?, cardnumber = ?, cardname = ?, status = ? WHERE number = ?;")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -95,7 +95,8 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
         statement.setString(5, account.getType());
         statement.setString(6, account.getCardNumber());
         statement.setString(7, account.getCardName());
-        statement.setInt(8, account.getAccountNumber());
+        statement.setString(8, account.getStatus());
+        statement.setInt(9, account.getAccountNumber());
     }
 
     private CreditCardAccount convertToAccount(ResultSet resultSet) throws SQLException{
@@ -110,8 +111,7 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
     			resultSet.getFloat("interestrate"));
     	
         account.setType(resultSet.getString("type"));
-       // account.setStatus("OPENED");
-        //TO DO
+        account.setStatus(resultSet.getString("status"));
         
         return account;
     }

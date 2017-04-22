@@ -79,6 +79,23 @@ public class CreditCardAccount extends Account {
 		this.accountNumber = accountNo;
 	}
 
+	@Override
+	public void setStatus(String status){
+		super.setStatus(status);
+		
+		stateNew = new StateNew(this);
+		stateOpened = new StateOpen(this);
+		stateClosed = new StateClose(this);
+
+		if (super.getStatus().compareTo("NEW") == 0) {
+			stateCurrent = stateNew;
+		} else if (super.getStatus().compareTo("OPENED") == 0) {
+			stateCurrent = stateOpened;
+		} else if (super.getStatus().compareTo("CLOSED") == 0) {
+			stateCurrent = stateClosed;
+		}
+	}
+	
 	public CreditCardAccount(int pCustNo, String pCardNumber, String pCardName, int pAccountNo, String pCcy,
 			LocalDate pStartDate, LocalDate pEndDate, float pInterestRate) {
 
@@ -88,17 +105,7 @@ public class CreditCardAccount extends Account {
 		cardName = pCardName;
 		accountNumber = pAccountNo;
 
-		stateNew = new StateNew(this);
-		stateOpened = new StateOpen(this);
-		stateClosed = new StateClose(this);
-
-		/*if (super.getStatus().compareTo("NEW") == 0) {
-			stateCurrent = stateNew;
-		} else if (super.getStatus().compareTo("OPENED") == 0) {*/
-			stateCurrent = stateOpened;
-		/*} else if (super.getStatus().compareTo("CLOSED") == 0) {
-			stateCurrent = stateClosed;
-		}*/
+		
 	}
 
 	public void saveAccount() throws MyOwnException {

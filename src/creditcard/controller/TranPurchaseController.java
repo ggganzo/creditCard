@@ -92,6 +92,7 @@ public class TranPurchaseController implements Initializable {
 			int accountNumber = Integer.parseInt(txtAccountNo.getText());
 			
 			account = ContextLayer.Model().Accounts().getElement(accountNumber);
+			
 			if(account == null){
 				JOptionPane.showMessageDialog(null, "Incorrect account number. Please, try again");
 			}
@@ -126,6 +127,10 @@ public class TranPurchaseController implements Initializable {
 		colBalance.setCellValueFactory(new PropertyValueFactory<Balance, BigDecimal>("balance"));
 
 		balanceTable.setItems(FXCollections.observableArrayList(balanceList));
+		
+		for(Balance balance: balanceList){
+			account.addBalanceToHashMap(balance);
+		}
 		
 	}
 

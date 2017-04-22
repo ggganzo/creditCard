@@ -13,7 +13,7 @@ public class Transaction extends AbstractElement {
 	private String balanceCode;
 	private BigDecimal amount;
 	private String type;
-	private BigDecimal postBalance;
+	private BigDecimal postBalance = new BigDecimal(0);
 	private String transanctionCode;
 	private String description;
 	private LocalDate transactionDate = LocalDate.now();
