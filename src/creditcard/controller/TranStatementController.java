@@ -2,12 +2,16 @@ package creditcard.controller;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import creditcard.model.CreditCardAccount;
 import creditcard.transaction.TranCommand;
+import creditcard.transaction.TranGenerateStatement;
 import creditcard.transaction.TranWithdraw;
 import financialcore.account.Balance;
 import financialcore.account.TransactionTemplate;
@@ -16,6 +20,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -38,7 +45,7 @@ public class TranStatementController implements Initializable {
 	private TextField txtAccountNo;
 
 	@FXML
-	private TextField txtAmount;
+	private TextField txtMinPayment;
 
 	@FXML
 	private DatePicker dpDueDate;
@@ -58,21 +65,29 @@ public class TranStatementController implements Initializable {
 	public void saveAction() throws MyOwnException {
 
 		if (txtAccountNo.getText().length() == 0
-				|| new BigDecimal(txtAmount.getText()).compareTo(new BigDecimal(0)) <= 0
-				|| txtDesc.getText().length() == 0
+				|| new BigDecimal(txtMinPayment.getText()).compareTo(new BigDecimal(0)) <= 0
+				|| dpDueDate.getValue() == null
 
 		) {
 			errorMessage.setText("Field is Empty!");
 			return;
 		}
 
-		TransactionTemplate _tran = new TransactionTemplate();
-		_tran.accountNo = Integer.valueOf(txtAccountNo.getText());
-		_tran.amount = new BigDecimal(txtAmount.getText());
-		_tran.description = txtDesc.getText();
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		// alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText("Are you sure to create statement");
+		// alert.setContentText("Are you ok with this?");
 
-		command = new TranWithdraw(_tran);
-		command.execute();
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			TransactionTemplate _tran = new TransactionTemplate();
+			_tran.accountNo = Integer.valueOf(txtAccountNo.getText());
+			_tran.amount = new BigDecimal(txtMinPayment.getText());
+			_tran.dueDate = dpDueDate.getValue();
+
+			command = new TranGenerateStatement(_tran);
+			command.execute();
+		}
 
 	}
 
@@ -84,6 +99,10 @@ public class TranStatementController implements Initializable {
 		Platform.runLater(() -> {
 			getAllBalance();
 		});
+
+		txtMinPayment.setText(String.valueOf(new BigDecimal(0)));
+		LocalDate localDate = LocalDate.now();
+		dpDueDate.setValue(localDate);
 	}
 
 	private void getAllBalance() {
@@ -110,7 +129,6 @@ public class TranStatementController implements Initializable {
 		this.account = pAccount;
 
 		txtAccountNo.setText(String.valueOf(account.getAccountNo()));
-		txtAmount.setText(String.valueOf(new BigDecimal(0)));
 
 		initDataAndControls();
 

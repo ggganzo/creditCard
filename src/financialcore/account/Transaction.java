@@ -16,19 +16,17 @@ public class Transaction extends AbstractElement {
 	private BigDecimal postBalance;
 	private String transanctionCode;
 	private String description;
-	private LocalDate transactionDate;
-
+	private LocalDate transactionDate = LocalDate.now();
 
 	public String getTransactionCode() {
 		return transanctionCode;
-}
+	}
+
 	public Transaction() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		LocalDate localDate = LocalDate.now();
 		System.out.println(dtf.format(localDate)); // 2016/11/16
 	}
-
-	
 
 	public void setTransactionCode(String tranCode) {
 		this.transanctionCode = tranCode;
