@@ -66,53 +66,68 @@ public class TranPurchaseController implements Initializable {
 
 	@FXML
 	public void saveAction() throws MyOwnException {
+		try {
+			if (txtAccountNo.getText().length() == 0
+					|| new BigDecimal(txtAmount.getText()).compareTo(new BigDecimal(0)) <= 0
+					|| txtDesc.getText().length() == 0
 
-		if (txtAccountNo.getText().length() == 0
-				|| new BigDecimal(txtAmount.getText()).compareTo(new BigDecimal(0)) <= 0
-				|| txtDesc.getText().length() == 0
-
-		) {
-			// errorMessage.setText("Field is Empty!");
-			return;
-		}
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		// alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Are you sure to make a transaction");
-		// alert.setContentText("Are you ok with this?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			TransactionTemplate _tran = new TransactionTemplate();
-			_tran.accountNo = Integer.valueOf(txtAccountNo.getText());
-			_tran.amount = new BigDecimal(txtAmount.getText());
-			_tran.description = txtDesc.getText();
-
-			command = new TranPurchase(_tran, account);
-			if (command.execute()) {
-				JOptionPane.showMessageDialog(null, "Successfully");
+			) {
+				// errorMessage.setText("Field is Empty!");
+				return;
 			}
 
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			// alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText("Are you sure to make a transaction");
+			// alert.setContentText("Are you ok with this?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				TransactionTemplate _tran = new TransactionTemplate();
+				_tran.accountNo = Integer.valueOf(txtAccountNo.getText());
+				_tran.amount = new BigDecimal(txtAmount.getText());
+				_tran.description = txtDesc.getText();
+
+				command = new TranPurchase(_tran, account);
+				if (command.execute()) {
+					// JOptionPane.showMessageDialog(null, "Successfully");
+
+					Alert alert1 = new Alert(AlertType.INFORMATION);
+					alert1.setHeaderText("Successfully");
+					alert1.show();
+
+				}
+
+			}
+		} catch (MyOwnException ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
+
 	}
 
 	@FXML
 	private void checkAccount() {
 		try {
 			System.out.println("checkAccount: controller: ");
-			// int accountNumber = Integer.parseInt(txtAccountNo.getText());
-
-			// account =
-			// ContextLayer.Model().Accounts().getElement(accountNumber);
 			account = facade.getAccountDetail(txtAccountNo.getText());
 
 			if (account == null) {
-				JOptionPane.showMessageDialog(null, "Incorrect account number. Please, try again");
+				Alert alert1 = new Alert(AlertType.INFORMATION);
+				alert1.setHeaderText("Incorrect account number. Please, try again");
+				alert1.show();
+
 			}
 
 			getAllBalance();
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Account number should be number");
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
 			ex.printStackTrace();
 		}
 	}
@@ -144,17 +159,24 @@ public class TranPurchaseController implements Initializable {
 	}
 
 	public void setAccount(CreditCardAccount pAccount) {
-		System.out.println("setAccount");
+		try {
+			System.out.println("setAccount");
 
-		this.account = pAccount;
+			this.account = pAccount;
 
-		txtAccountNo.setText(String.valueOf(account.getAccountNumber()));
-		txtAmount.setText(String.valueOf(new BigDecimal(0)));
+			txtAccountNo.setText(String.valueOf(account.getAccountNumber()));
+			txtAmount.setText(String.valueOf(new BigDecimal(0)));
 
-		txtAccountNo.setDisable(true);
-		btnCheckAccount.setDisable(true);
+			txtAccountNo.setDisable(true);
+			btnCheckAccount.setDisable(true);
 
-		getAllBalance();
+			getAllBalance();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
 
+			ex.printStackTrace();
+		}
 	}
 }

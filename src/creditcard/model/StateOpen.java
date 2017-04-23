@@ -56,7 +56,7 @@ public class StateOpen implements State {
 		Balance balCash = account.getBalanceHashMap().get(BalanceCode.CASH.toString());
 
 		if (balTotalLImit.getBalance().compareTo(pAmount.add(balPurchase.getBalance()).add(balCash.getBalance())) < 0) {
-			throw new MyOwnException(" Available balance is higher than balance");
+			throw new MyOwnException(" Not sufficient balance");
 		}
 
 		// balAvailable.decrBalance(account.getAccountNo(), pAmount, "PURCHASE",

@@ -54,8 +54,6 @@ public class Balance extends AbstractElement {
 
 	public void incrBalance(int pAccountNo, BigDecimal pTranAmount, String pTranCode, String pTranDesc) {
 
-		this.setBalance(this.getBalance().add(pTranAmount));
-
 		Transaction t = new Transaction();
 		t.setAccountNumber(pAccountNo);
 		t.setBalanceCode(this.getBalanceCode());
@@ -64,17 +62,18 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-		t.setPostBalance(this.getBalance());
+		t.setPostBalance(this.getBalance().add(pTranAmount));
 
 		t.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Transactions().save(t);
+
+		this.setBalance(this.getBalance().add(pTranAmount));
 
 		saveBalance();
 
 	}
 
 	public void decrBalance(int pAccountNo, BigDecimal pTranAmount, String pTranCode, String pTranDesc) {
-		this.setBalance(this.getBalance().subtract(pTranAmount));
 
 		Transaction t = new Transaction();
 		t.setAccountNumber(pAccountNo);
@@ -84,11 +83,12 @@ public class Balance extends AbstractElement {
 		t.setTransactionCode(pTranCode);
 		t.setDescription(pTranDesc);
 		t.setTransactionNumber(Sequence.getTranNo());
-		t.setPostBalance(this.getBalance());
+		t.setPostBalance(this.getBalance().subtract(pTranAmount));
 
 		t.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Transactions().save(t);
 
+		this.setBalance(this.getBalance().subtract(pTranAmount));
 		saveBalance();
 
 	}
