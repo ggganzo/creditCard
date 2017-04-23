@@ -16,7 +16,7 @@ public class StateNew implements State {
 	@Override
 	public void saveAccount() throws MyOwnException {
 		// account.createAccount();
-
+		System.out.println("saveAccount");
 		account.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Accounts().save(account);
 
