@@ -66,7 +66,7 @@ public class Account extends AbstractElement implements AccountI {
 	public void addBalanceToHashMap(Balance b) {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
-		b.setElementState(ElementState.Updated);
+		b.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Balances().save(b);
 	}
 
