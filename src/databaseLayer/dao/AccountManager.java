@@ -62,7 +62,7 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
     public boolean add(CreditCardAccount element) {
 
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, number, personid, cardnumber, cardname, status) VALUES(?,?,?,?,?,?,?,?,?,?);")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO account(currency,  startdate, enddate, interestrate, type, personid, cardnumber, cardname, status, number) VALUES(?,?,?,?,?,?,?,?,?,?);")) {
 
             Class.forName("org.sqlite.JDBC");
 
@@ -103,10 +103,12 @@ public class AccountManager implements IDataManager<CreditCardAccount>{
         statement.setString(3, account.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         statement.setFloat(4, account.getInterestRate());
         statement.setString(5, account.getType());
-        statement.setString(6, account.getCardNumber());
-        statement.setString(7, account.getCardName());
-        statement.setString(8, account.getStatus());
-        statement.setInt(9, account.getAccountNumber());
+        statement.setLong(6, account.getCustomer().getPersonId());
+        statement.setString(7, account.getCardNumber());
+        statement.setString(8, account.getCardName());
+        statement.setString(9, account.getStatus());
+        statement.setInt(10, account.getAccountNumber());
+        
     }
 
     private CreditCardAccount convertToAccount(ResultSet resultSet) throws SQLException{
