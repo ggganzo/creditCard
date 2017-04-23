@@ -68,7 +68,7 @@ public class AccountListController implements Initializable {
 	public void getAllMembers() {
 
 		System.out.println("getAllMembers: controller: ");
-
+		getAccountList();
 		colAccountNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("accountNo"));
 		colCardNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardNo"));
 		colCardName.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardName"));
@@ -80,7 +80,7 @@ public class AccountListController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("initialize");
-		getAccountList();
+		// getAccountList();
 		// TODO Auto-generated method stub
 		Platform.runLater(() -> {
 			getAllMembers();
