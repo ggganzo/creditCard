@@ -7,6 +7,8 @@ import financialcore.general.MyOwnException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import databaseLayer.contextLayer.ContextLayer;
+
 /**
  * Created by ganzo on 4/13/17.
  */
@@ -83,10 +85,6 @@ public class CreditCardAccount extends Account {
 	public void setStatus(String status) {
 		super.setStatus(status);
 
-		stateNew = new StateNew(this);
-		stateOpened = new StateOpen(this);
-		stateClosed = new StateClose(this);
-
 		if (super.getStatus().compareTo("NEW") == 0) {
 			stateCurrent = stateNew;
 		} else if (super.getStatus().compareTo("OPENED") == 0) {
@@ -105,18 +103,15 @@ public class CreditCardAccount extends Account {
 		cardName = pCardName;
 		accountNumber = pAccountNo;
 
+		stateNew = new StateNew(this);
+		stateOpened = new StateOpen(this);
+		stateClosed = new StateClose(this);
+
 	}
 
 	public void saveAccount() throws MyOwnException {
 		// super.saveAccount();
 		stateCurrent.saveAccount();
-		// if (super.getStatus().compareTo("NEW") == 0) {
-		// createBalances();
-		// } else if (super.getStatus().compareTo("OPENED") == 0) {
-
-		// }
-
-		// TODO save to DB
 	}
 
 	public void openAccount() throws MyOwnException {

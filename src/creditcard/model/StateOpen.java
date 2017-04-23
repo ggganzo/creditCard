@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.Map;
 
+import databaseLayer.ElementState;
+import databaseLayer.contextLayer.ContextLayer;
 import financialcore.account.Balance;
 import financialcore.general.MyOwnException;
 
@@ -18,8 +20,9 @@ public class StateOpen implements State {
 	@Override
 	public void saveAccount() throws MyOwnException {
 
-		account.updateAccount();
-
+		// account.updateAccount();
+		account.setElementState(ElementState.Updated);
+		ContextLayer.Model().Accounts().save(account);
 	}
 
 	@Override
@@ -44,6 +47,10 @@ public class StateOpen implements State {
 		if (outStandingBal.compareTo(new BigDecimal(0)) > 0) {
 			throw new MyOwnException("There is outstanding balance");
 		}
+
+		account.setStatus("CLOSED");
+		account.setElementState(ElementState.Updated);
+		ContextLayer.Model().Accounts().save(account);
 	}
 
 	@Override

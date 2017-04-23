@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import creditcard.model.BalanceCode;
@@ -16,11 +17,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -54,6 +58,7 @@ public class AccountCreateController implements Initializable {
 
 	@FXML
 	private DatePicker dpStart;
+	
 
 	@FXML
 	private DatePicker dpEnd;
@@ -74,56 +79,87 @@ public class AccountCreateController implements Initializable {
 
 	@FXML
 	public void saveAction() throws MyOwnException {
+		try {
+			if (txtAccountNo.getText().length() == 0 || txtCardNo.getText().length() == 0
+					|| txtCardName.getText().length() == 0
 
-		if (txtAccountNo.getText().length() == 0 || txtCardNo.getText().length() == 0
-				|| txtCardName.getText().length() == 0
+			) {
+				errorMessage.setText("Field is Empty!");
+				return;
+			}
 
-		) {
-			errorMessage.setText("Field is Empty!");
-			return;
+			String _accountNo = txtAccountNo.getText();
+			String _cardNo = txtCardNo.getText();
+			String _cardName = txtCardName.getText();
+			BigDecimal _totalLimit = new BigDecimal(txtTotalLimit.getText());
+			BigDecimal _cashLimit = new BigDecimal(txtCashLimit.getText());
+			LocalDate _startDate = dpStart.getValue();
+			LocalDate _endDate = dpEnd.getValue();
+			int _custNo = Integer.parseInt(txtCustNo.getText());
+			float _interestRate = 20;
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			// alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText("Are you sure to make a transaction");
+			// alert.setContentText("Are you ok with this?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				if (booleanEdit) {
+					facade.updateAccount(_accountNo, _startDate, _endDate, _totalLimit, _cashLimit);
+
+				} else {
+
+					facade.createAccount(_custNo, _cardNo, _cardName, _accountNo, "USD", _startDate, _endDate,
+							_interestRate, _totalLimit, _cashLimit);
+				}
+			}
+
+		} catch (MyOwnException ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
-
-		String _accountNo = txtAccountNo.getText();
-		String _cardNo = txtCardNo.getText();
-		String _cardName = txtCardName.getText();
-		BigDecimal _totalLimit = new BigDecimal(txtTotalLimit.getText());
-		BigDecimal _cashLimit = new BigDecimal(txtCashLimit.getText());
-		LocalDate _startDate = dpStart.getValue();
-		LocalDate _endDate = dpEnd.getValue();
-		int _custNo = Integer.parseInt(txtCustNo.getText());
-		float _interestRate = 20;
-
-		if (booleanEdit) {
-			facade.updateAccount(_accountNo, _startDate, _endDate, _totalLimit, _cashLimit);
-
-		} else {
-
-			facade.createAccount(_custNo, _cardNo, _cardName, _accountNo, "USD", _startDate, _endDate, _interestRate,
-					_totalLimit, _cashLimit);
-		}
-
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+
 		System.out.println("initialize");
 
 		Platform.runLater(() -> {
-			getAllBalance();
+			try {
+				getAllBalance();
+			} catch (MyOwnException ex) {
+				Alert alert1 = new Alert(AlertType.INFORMATION);
+				alert1.setHeaderText(ex.toString());
+				alert1.show();
+
+				ex.printStackTrace();
+			}
 		});
 	}
 
-	private void getAllBalance() {
+	private void getAllBalance() throws MyOwnException {
+		try {
 
-		System.out.println("getAllBalance: controller: ");
-		balanceList = new ArrayList<Balance>(account.getBalanceHashMap().values());
-		if (booleanEdit) {
-			colBalanceCode.setCellValueFactory(new PropertyValueFactory<Balance, String>("balanceCode"));
-			colBalance.setCellValueFactory(new PropertyValueFactory<Balance, BigDecimal>("balance"));
+			System.out.println("getAllBalance: controller: ");
 
-			balanceTable.setItems(FXCollections.observableArrayList(balanceList));
+			if (booleanEdit) {
+				balanceList = new ArrayList<Balance>(account.getBalanceHashMap().values());
+				colBalanceCode.setCellValueFactory(new PropertyValueFactory<Balance, String>("balanceCode"));
+				colBalance.setCellValueFactory(new PropertyValueFactory<Balance, BigDecimal>("balance"));
 
+				balanceTable.setItems(FXCollections.observableArrayList(balanceList));
+
+			}
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 

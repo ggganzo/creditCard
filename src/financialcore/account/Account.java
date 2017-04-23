@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import databaseLayer.AbstractElement;
+import databaseLayer.ElementState;
 import databaseLayer.contextLayer.ContextLayer;
 import financialcore.customer.Customer;
 import financialcore.general.MyOwnException;
@@ -65,16 +66,18 @@ public class Account extends AbstractElement implements AccountI {
 	public void addBalanceToHashMap(Balance b) {
 		balanceHashMap.put(b.getBalanceCode(), b);
 
-		// TODO
-		// dbAccess.INSTANCE.getDatastore().save(b);
+		b.setElementState(ElementState.Updated);
+		ContextLayer.Model().Balances().save(b);
 	}
 
 	@Override
 	public void updateBalanceToHashMap(Balance b) {
 		balanceHashMap.remove(b.getBalanceCode());
-		// TODO remove Baaz
+
 		balanceHashMap.put(b.getBalanceCode(), b);
-		// TODO add Baaz
+
+		b.setElementState(ElementState.Updated);
+		ContextLayer.Model().Balances().save(b);
 	}
 
 	public Account(int pCustNo, int pAccountNo, String pType, String pCcy, LocalDate pStartDate, LocalDate pEndDate) {
@@ -146,27 +149,19 @@ public class Account extends AbstractElement implements AccountI {
 	@Override
 	public void createAccount() throws MyOwnException {
 
-		// dbAccess.INSTANCE.getDatastore().save(this.account);
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void updateAccount() throws MyOwnException {
 
-		// dbAccess.INSTANCE.getDatastore().save(this.account);
-		// TODO Auto-generated method stub
-
 	}
 
 	public void openAccount() throws MyOwnException {
 		this.setStatus("OPENED");
-		// TODO save to DB
 	}
 
 	public void closeAccount() throws MyOwnException {
 		this.setStatus("CLOSED");
-		// TODO save to DB
 	}
 
 }
