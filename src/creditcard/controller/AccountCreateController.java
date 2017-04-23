@@ -112,9 +112,13 @@ public class AccountCreateController implements Initializable {
 					facade.createAccount(_custNo, _cardNo, _cardName, _accountNo, "USD", _startDate, _endDate,
 							_interestRate, _totalLimit, _cashLimit);
 				}
+				
+				Alert alert1 = new Alert(AlertType.INFORMATION);
+				alert1.setHeaderText("Succeeded");
+				alert1.show();
 			}
 
-		} catch (MyOwnException ex) {
+		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
 			alert1.setHeaderText(ex.toString());
 			alert1.show();

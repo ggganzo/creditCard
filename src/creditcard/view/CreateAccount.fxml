@@ -28,10 +28,10 @@
        <Button fx:id="btnSave" layoutX="268.0" layoutY="341.0" mnemonicParsing="false" onAction="#saveAction" styleClass="my-button-dark" text="Save" />
       <Label layoutX="71.0" layoutY="168.0" style="-fx-text-fill: #C8923A;" text="Total limit:" />
       <Label layoutX="70.0" layoutY="204.0" style="-fx-text-fill: #C8923A;" text="Cash limit:" />
-      <DatePicker layoutX="150.0" layoutY="235.0" prefHeight="27.0" prefWidth="167.0" promptText="dpStart" />
+      <DatePicker fx:id="dpStart" layoutX="150.0" layoutY="235.0" prefHeight="27.0" prefWidth="167.0" promptText="Start date" />
       <Label layoutX="70.0" layoutY="240.0" style="-fx-text-fill: #C8923A;" text="Start date:" />
       <Label layoutX="77.0" layoutY="277.0" style="-fx-text-fill: #C8923A;" text="End date:" />
-      <DatePicker layoutX="150.0" layoutY="272.0" prefHeight="27.0" prefWidth="167.0" promptText="dpEnd" />
+      <DatePicker fx:id="dpEnd" layoutX="150.0" layoutY="272.0" prefHeight="27.0" prefWidth="167.0" promptText="End date" />
       <TableView fx:id="balanceTable" layoutX="39.0" layoutY="398.0" prefHeight="151.0" prefWidth="317.0">
         <columns>
           <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />

@@ -99,7 +99,7 @@ public class TranPurchaseController implements Initializable {
 				}
 
 			}
-		} catch (MyOwnException ex) {
+		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
 			alert1.setHeaderText(ex.toString());
 			alert1.show();
