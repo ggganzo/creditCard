@@ -43,7 +43,7 @@ public class CreditFacade {
 		CreditCardAccount ccAccount = new CreditCardAccount(pCustNo, pCardNumber, pCardName,
 				Integer.parseInt(pAccountNo), pCcy, pStartDate, pEndDate, pInterestRate);
 
-		// ccAccount.saveAccount();
+		 ccAccount.saveAccount();
 
 		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
 		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);

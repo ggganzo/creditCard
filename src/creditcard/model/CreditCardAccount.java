@@ -106,7 +106,7 @@ public class CreditCardAccount extends Account {
 		stateNew = new StateNew(this);
 		stateOpened = new StateOpen(this);
 		stateClosed = new StateClose(this);
-
+		stateCurrent = stateNew;
 	}
 
 	public void saveAccount() throws MyOwnException {
