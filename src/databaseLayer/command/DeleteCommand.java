@@ -11,7 +11,7 @@ public class DeleteCommand implements ICommand {
 
     @Override
     public boolean execute() {
-        return dataManager.add(object);
+        return dataManager.delete(object);
     }
 
     @Override

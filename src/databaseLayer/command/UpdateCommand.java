@@ -11,7 +11,7 @@ public class UpdateCommand implements ICommand {
 
     @Override
     public boolean execute() {
-        return dataManager.add(object);
+        return dataManager.update(object);
     }
 
     @Override

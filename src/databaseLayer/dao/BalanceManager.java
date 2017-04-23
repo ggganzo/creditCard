@@ -85,7 +85,7 @@ public class BalanceManager implements IDataManager<Balance> {
     @Override
     public boolean update(Balance element) {
         try (Connection connection = DBConnection.SQLiteConnection();
-             PreparedStatement statement = connection.prepareStatement("UPDATE balance SET amount = ? WHERE accountnumber = ? AND code = ?;")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE balance SET amount = ? WHERE accountnumber = ? AND code = '?';")) {
 
             Class.forName("org.sqlite.JDBC");
 
