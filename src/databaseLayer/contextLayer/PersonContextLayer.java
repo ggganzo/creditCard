@@ -1,10 +1,12 @@
 package databaseLayer.contextLayer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import databaseLayer.dao.IDataManager;
 import databaseLayer.factory.DataStoreFactory;
+import financialcore.account.Transaction;
 import financialcore.customer.Customer;
 import financialcore.customer.Person;
 import financialcore.customer.PersonType;
@@ -19,8 +21,7 @@ public class PersonContextLayer extends IContextLayer<Person>{
     public static PersonContextLayer Persons(){
         return instance;
     }
-    
-    
+        
 	@Override
 	public Person getElement(int id) {
 		return getDataManager().getElement(id);
@@ -48,7 +49,7 @@ public class PersonContextLayer extends IContextLayer<Person>{
 	public Staff getStaff(String login, String password) {
 		return (Staff)getDataManager().getElement(login, password);
 	}
-	
+		
 	@Override
 	public IDataManager<Person> getDataManager() {
 		 if (dataManager == null) {

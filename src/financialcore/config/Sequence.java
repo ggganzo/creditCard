@@ -1,18 +1,17 @@
 package financialcore.config;
 
+import databaseLayer.contextLayer.ContextLayer;
+
 /**
  * Created by ganzo on 4/13/17.
  */
 public class Sequence {
 
-    private static int tranNo = 40;
-    private static int custNo = 1;
+    //private static int tranNo = 0;
 
 
     public static int getTranNo(){
-        return ++tranNo;
+        return ContextLayer.Model().Transactions().getLastTransactionNumber();
     }
-    public static int getCustNo(){
-        return ++custNo;
-    }
+    
 }
