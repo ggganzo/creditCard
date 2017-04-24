@@ -31,6 +31,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#openTransactionPurchase" text="Purchase" />
                         <MenuItem mnemonicParsing="false" onAction="#openTransactionRepayment" text="Repayment" />
                         <MenuItem mnemonicParsing="false" onAction="#openTransactionWithDraw" text="with Draw" />
+                        <MenuItem mnemonicParsing="false" onAction="#openTransactionStatement" text="Statement" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Help">

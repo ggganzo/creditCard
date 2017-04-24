@@ -72,6 +72,7 @@ public class Account extends AbstractElement implements AccountI {
 
 	@Override
 	public void updateBalanceToHashMap(Balance b) {
+		System.out.println("updateBalanceToHashMap");
 		balanceHashMap.remove(b.getBalanceCode());
 
 		balanceHashMap.put(b.getBalanceCode(), b);

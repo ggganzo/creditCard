@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="440.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.TranWithdrawController">
+<Pane id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="440.0" style="-fx-background-color: ;" styleClass="../view/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="creditcard.controller.TranStatementController">
    <children>
       <Label fx:id="errorMessage" layoutX="147.0" layoutY="70.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" textFill="#fcf7f7" />
       <Label layoutX="33.0" layoutY="21.0" style="-fx-text-fill: #C8923A;" text="Generate credit statement">
@@ -24,9 +24,9 @@
       <Label layoutX="65.0" layoutY="80.0" style="-fx-text-fill: #C8923A;" text="Account no:" />    
        <Button fx:id="btnMakeTransaction" layoutX="146.0" layoutY="176.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Generate Statement" />
       <Label layoutX="55.0" layoutY="113.0" style="-fx-text-fill: #C8923A;" text="Min payment:" />
-      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="226.0" prefHeight="193.0" prefWidth="361.0">
+      <TableView fx:id="balanceTable" layoutX="39.0" layoutY="226.0" prefHeight="238.0" prefWidth="361.0">
         <columns>
-          <TableColumn fx:id="colBalCode" prefWidth="161.0" text="Balance code" />
+          <TableColumn fx:id="colBalanceCode" prefWidth="161.0" text="Balance code" />
           <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />
         </columns>
       </TableView>

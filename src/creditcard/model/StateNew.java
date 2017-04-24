@@ -1,6 +1,7 @@
 package creditcard.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import databaseLayer.ElementState;
 import databaseLayer.contextLayer.ContextLayer;
@@ -14,13 +15,22 @@ public class StateNew implements State {
 	}
 
 	@Override
-	public void saveAccount() throws MyOwnException {
+	public void createAccount() throws MyOwnException {
 		// account.createAccount();
-		System.out.println("saveAccount");
+		System.out.println("createAccount");
 		account.setElementState(ElementState.Inserted);
 		ContextLayer.Model().Accounts().save(account);
 
 		account.createBalances();
+	}
+
+	@Override
+	public void saveAccount() throws MyOwnException {
+		// account.createAccount();
+		System.out.println("NEW: saveAccount");
+		account.setElementState(ElementState.Updated);
+		ContextLayer.Model().Accounts().save(account);
+
 	}
 
 	@Override
@@ -58,6 +68,12 @@ public class StateNew implements State {
 	@Override
 	public void repayment(BigDecimal pAmount, String TranDesc) throws MyOwnException {
 		throw new MyOwnException("Account must be opened");
+
+	}
+	
+	@Override
+	public void createStatement(BigDecimal pAmount, LocalDate pDueDate) throws MyOwnException {
+		throw new MyOwnException("AAccount must be opened");
 
 	}
 

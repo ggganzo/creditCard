@@ -43,7 +43,7 @@ public class CreditFacade {
 		CreditCardAccount ccAccount = new CreditCardAccount(pCustNo, pCardNumber, pCardName,
 				Integer.parseInt(pAccountNo), pCcy, pStartDate, pEndDate, pInterestRate);
 
-		 ccAccount.saveAccount();
+		ccAccount.createAccount();
 
 		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
 		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);
@@ -59,21 +59,26 @@ public class CreditFacade {
 
 	public void updateAccount(String pAccountNo, LocalDate pStartDate, LocalDate pEndDate, BigDecimal pTotalLimit,
 			BigDecimal pCashLImit) throws MyOwnException {
+		System.out.println("updateAccount");
 		CreditCardAccount ccAccount = getCCAccountDetail(pAccountNo);
+		ccAccount.setStartDate(pStartDate);
+		ccAccount.setEndDate(pEndDate);
 
-		Balance balLimit = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMIT.toString(), pTotalLimit);
-		Balance balLimitCash = new Balance(ccAccount.getAccountNo(), BalanceCode.LIMITCASH.toString(), pCashLImit);
+		Balance balLimit = ccAccount.getBalanceHashMap().get(BalanceCode.LIMIT.toString());
+		Balance balLimitCash = ccAccount.getBalanceHashMap().get(BalanceCode.LIMITCASH.toString());
 
 		if (balLimit.getBalance().compareTo(pTotalLimit) != 0) {
+			System.out.println("LIMIT DIFFERENT");
 			balLimit.setBalance(pTotalLimit);
 			ccAccount.updateBalanceToHashMap(balLimit);
 		}
-		if (balLimit.getBalance().compareTo(pTotalLimit) != 0) {
-			balLimit.setBalance(pCashLImit);
+		if (balLimitCash.getBalance().compareTo(pCashLImit) != 0) {
+			System.out.println("LIMITCASH DIFFEREN");
+			balLimitCash.setBalance(pCashLImit);
 			ccAccount.updateBalanceToHashMap(balLimitCash);
 		}
 
-		// TODO send notification
+		ccAccount.saveAccount();
 	}
 
 	public void openAccount(String pAccountNo) throws MyOwnException {

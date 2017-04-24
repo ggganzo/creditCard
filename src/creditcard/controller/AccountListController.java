@@ -92,37 +92,65 @@ public class AccountListController implements Initializable {
 	}
 
 	private void getAccountList() {
-		System.out.println("getAccountList: controller: ");
-		accountList = facade.getAccountList();
-	}
+		try {
+			System.out.println("getAccountList: controller: ");
+			accountList = facade.getAccountList();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
 
-	// @FXML
-	// public void ActionAdd() {
-	// System.out.println("SDF");
-	// MainFormController.getMainController().changeView("createNewAccount");
-	// }
+			ex.printStackTrace();
+		}
+	}
 
 	@FXML
 	public void clickAccountEdit() {
+		try {
+			account = facade.getAccountDetail(String.valueOf(account.getAccountNo()));
 
-		account = facade.getAccountDetail(String.valueOf(account.getAccountNo()));
+			// MainFormController.getMainController().changeViewAccount("editEmployee",
+			// account);
 
-		MainFormController.getMainController().changeViewAccount("editEmployee", account);
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/CreateAccount.fxml"));
+			Parent root1 = (Parent) fxmlLoader1.load();
+			Stage stage1 = new Stage();
+			stage1.setScene(new Scene(root1));
+
+			AccountCreateController controller = fxmlLoader1.<AccountCreateController>getController();
+			controller.setAccount(account);
+
+			stage1.show();
+
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
+		}
 	}
 
 	@FXML
 	public void clickTable() {
-		System.out.println("clickTable");
-		account = accountTable.getSelectionModel().getSelectedItem();
-		txtEditAccount.setText(String.valueOf(account.getAccountNo()));
+		try {
+			System.out.println("clickTable");
+			account = accountTable.getSelectionModel().getSelectedItem();
+			txtEditAccount.setText(String.valueOf(account.getAccountNo()));
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
 
+			ex.printStackTrace();
+		}
 	}
 
 	@FXML
 	public void clickTranList() {
 
 		try {
-			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TrsanList.fxml"));
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranList.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
 			stage1.setScene(new Scene(root1));
@@ -132,8 +160,12 @@ public class AccountListController implements Initializable {
 
 			stage1.show();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -151,8 +183,12 @@ public class AccountListController implements Initializable {
 
 			stage1.show();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -161,7 +197,7 @@ public class AccountListController implements Initializable {
 
 		try {
 
-			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranWithdraw.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
 			stage1.setScene(new Scene(root1));
@@ -171,8 +207,12 @@ public class AccountListController implements Initializable {
 
 			stage1.show();
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -180,7 +220,7 @@ public class AccountListController implements Initializable {
 	public void clickRepayment() {
 
 		try {
-			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranRepayment.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
 			stage1.setScene(new Scene(root1));
@@ -189,8 +229,12 @@ public class AccountListController implements Initializable {
 			controller.setAccount(account);
 
 			stage1.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -198,7 +242,7 @@ public class AccountListController implements Initializable {
 	public void clickCreateStatement() {
 
 		try {
-			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranStatement.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
 			stage1.setScene(new Scene(root1));
@@ -207,8 +251,12 @@ public class AccountListController implements Initializable {
 			controller.setAccount(account);
 
 			stage1.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -225,8 +273,12 @@ public class AccountListController implements Initializable {
 			if (result.get() == ButtonType.OK) {
 				facade.openAccount(String.valueOf(account.getAccountNo()));
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
@@ -241,10 +293,14 @@ public class AccountListController implements Initializable {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				facade.openAccount(String.valueOf(account.getAccountNo()));
+				facade.closeAccount(String.valueOf(account.getAccountNo()));
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 }

@@ -58,7 +58,6 @@ public class AccountCreateController implements Initializable {
 
 	@FXML
 	private DatePicker dpStart;
-	
 
 	@FXML
 	private DatePicker dpEnd;
@@ -104,6 +103,7 @@ public class AccountCreateController implements Initializable {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
+				System.out.println("booleanEdit: " + booleanEdit);
 				if (booleanEdit) {
 					facade.updateAccount(_accountNo, _startDate, _endDate, _totalLimit, _cashLimit);
 
@@ -112,10 +112,12 @@ public class AccountCreateController implements Initializable {
 					facade.createAccount(_custNo, _cardNo, _cardName, _accountNo, "USD", _startDate, _endDate,
 							_interestRate, _totalLimit, _cashLimit);
 				}
-				
+
 				Alert alert1 = new Alert(AlertType.INFORMATION);
 				alert1.setHeaderText("Succeeded");
 				alert1.show();
+
+				getAllBalance();
 			}
 
 		} catch (Exception ex) {
@@ -152,11 +154,12 @@ public class AccountCreateController implements Initializable {
 
 			if (booleanEdit) {
 				balanceList = new ArrayList<Balance>(account.getBalanceHashMap().values());
-				colBalanceCode.setCellValueFactory(new PropertyValueFactory<Balance, String>("balanceCode"));
+
 				colBalance.setCellValueFactory(new PropertyValueFactory<Balance, BigDecimal>("balance"));
-
+				colBalanceCode.setCellValueFactory(new PropertyValueFactory<Balance, String>("balanceCode"));
+				balanceTable.refresh();
 				balanceTable.setItems(FXCollections.observableArrayList(balanceList));
-
+				balanceTable.refresh();
 			}
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
@@ -172,6 +175,7 @@ public class AccountCreateController implements Initializable {
 		if (booleanEdit) {
 			txtAccountNo.setDisable(true);
 			txtCardNo.setDisable(true);
+			txtCardName.setDisable(true);
 			txtCustNo.setDisable(true);
 		}
 	}
@@ -180,13 +184,15 @@ public class AccountCreateController implements Initializable {
 		System.out.println("setAccount");
 
 		booleanEdit = true;
-		this.account = pAccount;
+		this.account = facade.getAccountDetail(String.valueOf(pAccount.getAccountNo()));
 
 		txtAccountNo.setText(String.valueOf(account.getAccountNo()));
 		txtCardNo.setText(account.getCardNumber().toString());
 		txtCardName.setText(account.getCardName());
-		txtTotalLimit.setText(String.valueOf(account.getBalanceHashMap().get(BalanceCode.LIMIT.toString())));
-		txtCashLimit.setText(String.valueOf(account.getBalanceHashMap().get(BalanceCode.LIMITCASH.toString())));
+		txtTotalLimit
+				.setText(String.valueOf(account.getBalanceHashMap().get(BalanceCode.LIMIT.toString()).getBalance()));
+		txtCashLimit.setText(
+				String.valueOf(account.getBalanceHashMap().get(BalanceCode.LIMITCASH.toString()).getBalance()));
 		dpStart.setValue(account.getStartDate());
 		dpEnd.setValue(account.getEndDate());
 		txtCustNo.setText(String.valueOf(account.getCustomer().getPersonId()));

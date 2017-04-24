@@ -13,8 +13,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -46,21 +48,30 @@ public class TranListController implements Initializable {
 
 	public void getAllMembers() {
 
-		System.out.println("getAllMembers: controller: ");
+		try {
+			getAccountList();
+			System.out.println("getAllMembers: controller: ");
 
-		colAccountNo.setCellValueFactory(new PropertyValueFactory<Transaction, String>("accountNo"));
-		colTranNo.setCellValueFactory(new PropertyValueFactory<Transaction, String>("tranNo"));
-		colBalanceCode.setCellValueFactory(new PropertyValueFactory<Transaction, String>("balanceCode"));
-		colAmount.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amount"));
-		colDescription.setCellValueFactory(new PropertyValueFactory<Transaction, String>("description"));
+			colAccountNo.setCellValueFactory(new PropertyValueFactory<Transaction, String>("accountNumber"));
+			colTranNo.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionId"));
+			colBalanceCode.setCellValueFactory(new PropertyValueFactory<Transaction, String>("balanceCode"));
+			colAmount.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amount"));
+			colDescription.setCellValueFactory(new PropertyValueFactory<Transaction, String>("description"));
 
-		transactionTable.setItems(FXCollections.observableArrayList(accountList));
+			transactionTable.setItems(FXCollections.observableArrayList(accountList));
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("initialize: TranlistController: ");
-		getAccountList();
+
 		// TODO Auto-generated method stub
 		Platform.runLater(() -> {
 			System.out.println("runLater: TranlistController: ");
@@ -70,12 +81,30 @@ public class TranListController implements Initializable {
 	}
 
 	private void getAccountList() {
-		System.out.println("getAccountList: TranlistController: ");
-		accountList = facade.getTransactionList(String.valueOf(cAccount.getAccountNo()));
+		try {
+			System.out.println("getAccountList: TranlistController: ");
+			accountList = facade.getTransactionList(String.valueOf(cAccount.getAccountNo()));
+			System.out.println("accountList.size: TranlistController: " + accountList.size());
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
+		}
 	}
 
-	public void initData(CreditCardAccount cAccount) {
-		System.out.println("initData: TranlistController: ");
-		this.cAccount = cAccount;
+	public void initData(CreditCardAccount pAccount) {
+		try {
+			System.out.println("initData: TranlistController: ");
+			this.cAccount = facade.getAccountDetail(String.valueOf(pAccount.getAccountNo()));
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
+		}
+
 	}
 }

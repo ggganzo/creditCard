@@ -24,7 +24,7 @@
       <Label layoutX="53.0" layoutY="82.0" style="-fx-text-fill: #C8923A;" text="Account no:" />    
        <Button fx:id="btnMakeTransaction" disable="true" layoutX="148.0" layoutY="257.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="27.0" prefWidth="167.0" styleClass="my-button-dark" text="Make transactioon" />
       <Label layoutX="76.0" layoutY="115.0" style="-fx-text-fill: #C8923A;" text="Amount:" />
-      <TableView fx:id="balanceTable" layoutX="148.0" layoutY="318.0" prefHeight="192.0" prefWidth="367.0">
+      <TableView fx:id="balanceTable" layoutX="148.0" layoutY="318.0" prefHeight="231.0" prefWidth="367.0">
         <columns>
           <TableColumn fx:id="colBalanceCode" prefWidth="161.0" text="Balance code" />
           <TableColumn fx:id="colBalance" prefWidth="161.0" text="Balance" />

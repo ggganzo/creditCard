@@ -147,6 +147,17 @@ public class MainScreenController {
 		}
 	}
 	
+	@FXML
+	private void openTransactionStatement() {
+		try {
+			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranStatement.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public Pane getMainPane() {
 		return paneMain;
 	}

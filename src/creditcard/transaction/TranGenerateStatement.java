@@ -18,7 +18,7 @@ public class TranGenerateStatement implements TranCommand {
 	@Override
 	public boolean execute() throws MyOwnException {
 
-		account.createStatement(tranTemplate.amount);
+		account.createStatement(tranTemplate.amount, tranTemplate.dueDate);
 		NotificationTran.INSTANCE.sendStatement(tranTemplate);
 		return true;
 	}

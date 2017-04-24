@@ -5,7 +5,7 @@ package financialcore.config;
  */
 public class Sequence {
 
-    private static int tranNo = 10;
+    private static int tranNo = 40;
     private static int custNo = 1;
 
 

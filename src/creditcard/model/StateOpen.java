@@ -1,6 +1,7 @@
 package creditcard.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -15,6 +16,12 @@ public class StateOpen implements State {
 
 	public StateOpen(CreditCardAccount pAccount) {
 		account = pAccount;
+	}
+
+	@Override
+	public void createAccount() throws MyOwnException {
+
+		throw new MyOwnException("Already created");
 	}
 
 	@Override
@@ -101,23 +108,37 @@ public class StateOpen implements State {
 		Balance balCash = account.getBalanceHashMap().get(BalanceCode.CASH.toString());
 		Balance balPurchase = account.getBalanceHashMap().get(BalanceCode.PURCHASE.toString());
 
-		// Balance balAvailable =
-		// account.getBalanceHashMap().get(BalanceCode.AVAILABLE.toString());
-
-		// balAvailable.decrBalance(account.getAccountNo(), pAmount,
-		// "REPAYMENT", TranDesc);
-
 		if (balCash.getBalance().compareTo(pAmount) > 0) {
 
 			balCash.decrBalance(account.getAccountNo(), pAmount, "REPAYMENT", TranDesc);
 
 		} else {
 
-			balCash.decrBalance(account.getAccountNo(), balCash.getBalance(), "REPAYMENT", TranDesc);
-			balPurchase.decrBalance(account.getAccountNo(), pAmount.subtract(balCash.getBalance()), "REPAYMENT",
-					TranDesc);
+			BigDecimal cashBal = balCash.getBalance();
+			balCash.decrBalance(account.getAccountNo(), cashBal, "REPAYMENT", TranDesc);
+			balPurchase.decrBalance(account.getAccountNo(), pAmount.subtract(cashBal), "REPAYMENT", TranDesc);
 
 		}
+
+		Balance balMinPay = account.getBalanceHashMap().get(BalanceCode.MINPAYAMOUNT.toString());
+		if (balMinPay.getBalance().compareTo(new BigDecimal(0)) > 0) {
+			if (balMinPay.getBalance().compareTo(pAmount) >= 0) {
+				balMinPay.decrBalance(account.getAccountNo(), pAmount, "REPAYMENT", TranDesc);
+			} else {
+				balMinPay.decrBalance(account.getAccountNo(), balMinPay.getBalance(), "REPAYMENT", TranDesc);
+			}
+		}
+
+	}
+
+	@Override
+	public void createStatement(BigDecimal pAmount, LocalDate pDueDate) throws MyOwnException {
+		System.out.println("createStatement");
+
+		Balance balMinPay = account.getBalanceHashMap().get(BalanceCode.MINPAYAMOUNT.toString());
+
+		balMinPay.setBalance(pAmount);
+		account.updateBalanceToHashMap(balMinPay);
 
 	}
 

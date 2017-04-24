@@ -84,7 +84,7 @@ public class CreditCardAccount extends Account {
 	@Override
 	public void setStatus(String status) {
 		super.setStatus(status);
-
+		System.out.println("setStatus: " + super.getStatus());
 		if (super.getStatus().compareTo("NEW") == 0) {
 			stateCurrent = stateNew;
 		} else if (super.getStatus().compareTo("OPENED") == 0) {
@@ -109,8 +109,19 @@ public class CreditCardAccount extends Account {
 		stateCurrent = stateNew;
 	}
 
+	public void createAccount() throws MyOwnException {
+		// super.saveAccount();
+		System.out.println("createAccount");
+		System.out.println("createAccount: " + stateCurrent.getClass());
+
+		stateCurrent.saveAccount();
+	}
+
 	public void saveAccount() throws MyOwnException {
 		// super.saveAccount();
+		System.out.println("saveAccount");
+		System.out.println("stateCurrent: " + stateCurrent.getClass());
+
 		stateCurrent.saveAccount();
 	}
 
@@ -183,9 +194,9 @@ public class CreditCardAccount extends Account {
 		stateCurrent.repayment(pAmount, TranDesc);
 	}
 
-	public void createStatement(BigDecimal pAmount) {
+	public void createStatement(BigDecimal pAmount, LocalDate pDueDate) throws MyOwnException {
 
-		// TODO Create Statemtn // TODO Send notification
+		stateCurrent.createStatement(pAmount, pDueDate);
 	}
 
 }

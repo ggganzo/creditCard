@@ -18,13 +18,13 @@
             <Font size="20.0" />
          </font>
       </Label>  
-      <TableView fx:id="accountTable" layoutX="47.0" layoutY="82.0" prefHeight="259.0" prefWidth="655.0">
+      <TableView fx:id="transactionTable" layoutX="47.0" layoutY="82.0" prefHeight="259.0" prefWidth="655.0">
          <columns>
         	<TableColumn id="colAccountNo" fx:id="colAccountNo" prefWidth="100.0" text="Account no" />
-            <TableColumn fx:id="tranNo" prefWidth="75.0" text="Tran No" />
-        	<TableColumn id="colBalanceCode" fx:id="colCardNo" prefWidth="150.0" text="Balance code" /> 
-            <TableColumn id="colAmount" fx:id="colCardName" prefWidth="150.0" text="Amount" /> 
-            <TableColumn id="colDescription" fx:id="colTotalLimit" prefWidth="250" text="Desription" />                         
+            <TableColumn fx:id="colTranNo" prefWidth="75.0" text="Tran No" />
+        	<TableColumn id="colBalanceCode" fx:id="colBalanceCode" prefWidth="150.0" text="Balance code" /> 
+            <TableColumn id="colAmount" fx:id="colAmount" prefWidth="150.0" text="Amount" /> 
+            <TableColumn id="colDescription" fx:id="colDescription" prefWidth="250" text="Desription" />                         
           </columns>
       </TableView>
       <Label fx:id="editError" layoutX="437.0" layoutY="384.0" style="-fx-text-fill: #C8923A; -fx-font-weight: bold;" />

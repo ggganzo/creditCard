@@ -148,9 +148,6 @@ public class TranPurchaseController implements Initializable {
 		btnMakeTransaction.setDisable(false);
 		balanceList = new ArrayList<Balance>(account.getBalanceHashMap().values());
 
-		// balanceList =
-		// ContextLayer.Model().Balances().getElementsByAccount(this.account.getAccountNumber());
-
 		colBalanceCode.setCellValueFactory(new PropertyValueFactory<Balance, String>("balanceCode"));
 		colBalance.setCellValueFactory(new PropertyValueFactory<Balance, BigDecimal>("balance"));
 

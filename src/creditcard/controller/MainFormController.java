@@ -14,8 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -128,9 +130,12 @@ public class MainFormController implements Initializable {
 				contentPane.getChildren().setAll(intent);
 				break;
 			}
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+		} catch (Exception ex) {
+			Alert alert1 = new Alert(AlertType.INFORMATION);
+			alert1.setHeaderText(ex.toString());
+			alert1.show();
+
+			ex.printStackTrace();
 		}
 	}
 
