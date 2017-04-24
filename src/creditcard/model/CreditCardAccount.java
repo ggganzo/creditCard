@@ -114,7 +114,7 @@ public class CreditCardAccount extends Account {
 		System.out.println("createAccount");
 		System.out.println("createAccount: " + stateCurrent.getClass());
 
-		stateCurrent.saveAccount();
+		stateCurrent.createAccount();
 	}
 
 	public void saveAccount() throws MyOwnException {

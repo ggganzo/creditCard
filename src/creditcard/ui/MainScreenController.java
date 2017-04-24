@@ -2,7 +2,12 @@ package creditcard.ui;
 
 import java.io.IOException;
 
+import creditcard.controller.TranPurchaseController;
+import creditcard.controller.TranRepaymentController;
+import creditcard.controller.TranStatementController;
+import creditcard.controller.TranWithdrawController;
 import creditcard.factory.User;
+import creditcard.model.CreditCardAccount;
 import creditcard.service.MainWindowService;
 import creditcard.service.WindowService;
 import financialcore.customer.Customer;
@@ -125,10 +130,40 @@ public class MainScreenController {
 		}
 	}
 	
+	public void openTransactionPurchase(CreditCardAccount account) {
+		try {
+			FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			Parent intent = fxloader.load();
+
+			TranPurchaseController cont = fxloader.getController();
+			cont.setAccount(account);
+
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	private void openTransactionRepayment() {
 		try {
 			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranRepayment.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void openTransactionRepayment(CreditCardAccount account) {
+		try {
+			FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/creditcard/view/TranRepayment.fxml"));
+			Parent intent = fxloader.load();
+
+			TranRepaymentController cont = fxloader.getController();
+			cont.setAccount(account);
+
 			paneMain.getChildren().setAll(intent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -147,10 +182,41 @@ public class MainScreenController {
 		}
 	}
 	
+	public void openTransactionWithDraw(CreditCardAccount account) {
+		try {
+			FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/creditcard/view/TranWithdraw.fxml"));
+			Parent intent = fxloader.load();
+
+			TranWithdrawController cont = fxloader.getController();
+			cont.setAccount(account);
+
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@FXML
 	private void openTransactionStatement() {
 		try {
 			Parent intent = FXMLLoader.load(getClass().getResource("/creditcard/view/TranStatement.fxml"));
+			paneMain.getChildren().setAll(intent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void openTransactionStatement(CreditCardAccount account) {
+		try {
+			FXMLLoader fxloader = new FXMLLoader(getClass().getResource("/creditcard/view/TranStatement.fxml"));
+			Parent intent = fxloader.load();
+
+			TranStatementController cont = fxloader.getController();
+			cont.setAccount(account);
+
 			paneMain.getChildren().setAll(intent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -35,8 +35,8 @@ public class TransactionContextLayer extends IContextLayer<Transaction> {
 	
 	public int getLastTransactionNumber(){
 		List<Transaction> trans = getDataManager().getElements();
-		Optional<Integer> ret = trans.stream().map(m->m.getTransactionNumber()).max(Integer::max);
-		return ret.isPresent() ? ret.get() : 1;
+		Optional<Integer> ret = trans.stream().map(m->m.getTransactionNumber()).max(Integer::compare);
+		return ret.isPresent() ? (ret.get() + 1) : 1;
 	}
 	
 	@Override

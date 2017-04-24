@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import creditcard.model.CreditCardAccount;
 import creditcard.model.CreditFacade;
+import creditcard.service.MainWindowService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -150,6 +151,8 @@ public class AccountListController implements Initializable {
 	public void clickTranList() {
 
 		try {
+			MainWindowService.Current().getMainScreenController().openTransactionView();
+			/*
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranList.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
@@ -158,7 +161,7 @@ public class AccountListController implements Initializable {
 			TranListController controller = fxmlLoader1.<TranListController>getController();
 			controller.initData(account);
 
-			stage1.show();
+			stage1.show();*/
 
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
@@ -173,7 +176,10 @@ public class AccountListController implements Initializable {
 	public void clickPurchase() {
 
 		try {
-			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
+			
+			MainWindowService.Current().getMainScreenController().openTransactionPurchase(account);
+			
+			/*FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranPurchase.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
 			stage1.setScene(new Scene(root1));
@@ -182,7 +188,7 @@ public class AccountListController implements Initializable {
 			controller.setAccount(account);
 
 			stage1.show();
-
+*/
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
 			alert1.setHeaderText(ex.toString());
@@ -196,7 +202,8 @@ public class AccountListController implements Initializable {
 	public void clickWithdraw() {
 
 		try {
-
+			MainWindowService.Current().getMainScreenController().openTransactionWithDraw(account);
+/*
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranWithdraw.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
@@ -205,7 +212,7 @@ public class AccountListController implements Initializable {
 			TranWithdrawController controller = fxmlLoader1.<TranWithdrawController>getController();
 			controller.setAccount(account);
 
-			stage1.show();
+			stage1.show();*/
 
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
@@ -220,6 +227,8 @@ public class AccountListController implements Initializable {
 	public void clickRepayment() {
 
 		try {
+			MainWindowService.Current().getMainScreenController().openTransactionRepayment(account);
+			/*
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranRepayment.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
@@ -228,7 +237,7 @@ public class AccountListController implements Initializable {
 			TranPurchaseController controller = fxmlLoader1.<TranPurchaseController>getController();
 			controller.setAccount(account);
 
-			stage1.show();
+			stage1.show();*/
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
 			alert1.setHeaderText(ex.toString());
@@ -242,6 +251,7 @@ public class AccountListController implements Initializable {
 	public void clickCreateStatement() {
 
 		try {
+			/*
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/creditcard/view/TranStatement.fxml"));
 			Parent root1 = (Parent) fxmlLoader1.load();
 			Stage stage1 = new Stage();
@@ -250,7 +260,8 @@ public class AccountListController implements Initializable {
 			TranStatementController controller = fxmlLoader1.<TranStatementController>getController();
 			controller.setAccount(account);
 
-			stage1.show();
+			stage1.show();*/
+			MainWindowService.Current().getMainScreenController().openTransactionStatement(account);
 		} catch (Exception ex) {
 			Alert alert1 = new Alert(AlertType.INFORMATION);
 			alert1.setHeaderText(ex.toString());

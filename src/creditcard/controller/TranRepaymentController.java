@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import creditcard.model.CreditCardAccount;
 import creditcard.model.CreditFacade;
+import creditcard.service.MainWindowService;
 import creditcard.transaction.TranCommand;
 import creditcard.transaction.TranRepayment;
 import financialcore.account.Balance;
@@ -96,6 +97,7 @@ public class TranRepaymentController implements Initializable {
 					Alert alert1 = new Alert(AlertType.INFORMATION);
 					alert1.setHeaderText("Successfully");
 					alert1.show();
+					MainWindowService.Current().getMainScreenController().openTransactionView();
 				}
 			}
 		} catch (Exception ex) {

@@ -59,7 +59,18 @@ public class TransactionOverviewController {
 
 	@FXML
 	private void searchTransaction() {
-		List<Transaction> transactions = ContextLayer.Model().Transactions().getElements();
+		int accountnumber = 0;
+		
+		try{
+			accountnumber = Integer.parseInt(txtAccountNumber.getText());
+		}
+		catch(Exception ex){
+			//ex.printStackTrace(ex);
+			accountnumber = 0;
+		}
+		
+		List<Transaction> transactions = accountnumber > 0 ? ContextLayer.Model().Transactions().getElementsByAccount(accountnumber) : 
+			ContextLayer.Model().Transactions().getElements();
 
 		clmNumber.setCellValueFactory(new PropertyValueFactory<Transaction, Integer>("transactionNumber"));
 		clmAccountNumber.setCellValueFactory(new PropertyValueFactory<Transaction, Integer>("accountNumber"));

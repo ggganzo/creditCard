@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import creditcard.model.CreditCardAccount;
 import creditcard.model.CreditFacade;
+import creditcard.service.MainWindowService;
 import creditcard.transaction.TranCommand;
 import creditcard.transaction.TranGenerateStatement;
 import financialcore.account.Balance;
@@ -98,6 +99,7 @@ public class TranStatementController implements Initializable {
 					Alert alert1 = new Alert(AlertType.INFORMATION);
 					alert1.setHeaderText("Successfully");
 					alert1.show();
+					MainWindowService.Current().getMainScreenController().openTransactionView();
 				}
 			}
 		} catch (Exception ex) {

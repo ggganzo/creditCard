@@ -43,10 +43,11 @@ public class TransactionReportBuilder extends IReportBuilder {
 		if (transaction != null && account != null && customer != null) {
 
 			String report = "Transaction number: " + transaction.getTransactionNumber();
-			report += "\nAccount number: " + transaction.getAccountNumber() + " | Type: " + account.getType();
-			report += "\nTransaction code: " + transaction.getTransactionCode();
-			report += "\nTransaction date: " + transaction.getTransactionDate();
-
+			
+			report += "\tTransaction code: " + transaction.getTransactionCode();
+			report += "\tTransaction date: " + transaction.getTransactionDate();
+			report += "\nAccount number: " + transaction.getAccountNumber() + "\t| Type: " + account.getType();
+			
 			report += "\nDescription: " + transaction.getDescription();
 			report += "\n================================================================";
 			report+="\n " + customer.getLastName() + " " + customer.getFirstName();
