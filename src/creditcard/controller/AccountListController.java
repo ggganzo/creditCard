@@ -71,7 +71,7 @@ public class AccountListController implements Initializable {
 		System.out.println("getAllMembers: controller: ");
 		getAccountList();
 		colAccountNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("accountNo"));
-		colCardNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardNo"));
+		colCardNo.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardNumber"));
 		colCardName.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("cardName"));
 		colStatus.setCellValueFactory(new PropertyValueFactory<CreditCardAccount, String>("status"));
 

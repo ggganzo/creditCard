@@ -182,7 +182,7 @@ public class AccountCreateController implements Initializable {
 
 	public void setAccount(CreditCardAccount pAccount) {
 		System.out.println("setAccount");
-
+		lblTitle.setText("Edit account");
 		booleanEdit = true;
 		this.account = facade.getAccountDetail(String.valueOf(pAccount.getAccountNo()));
 

@@ -22,4 +22,9 @@ public class InsertCommand implements ICommand {
     public void setDataManager(IDataManager dataManager) {
         this.dataManager = dataManager;
     }
+
+	@Override
+	public boolean undo() {
+		return dataManager.delete(object);
+	}
 }

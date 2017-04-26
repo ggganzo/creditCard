@@ -15,6 +15,11 @@ public class UpdateCommand implements ICommand {
     }
 
     @Override
+    public boolean undo() {
+        return false;
+    }
+    
+    @Override
     public void setElement(Object object) {
         this.object = object;
     }

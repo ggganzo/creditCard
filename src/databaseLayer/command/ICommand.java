@@ -7,6 +7,7 @@ import databaseLayer.dao.IDataManager;
  */
 public interface ICommand {
     boolean execute();
+    boolean undo();
     void setElement(Object object);
     void setDataManager(IDataManager dataManager);
 }

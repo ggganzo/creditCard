@@ -13,6 +13,11 @@ public class DeleteCommand implements ICommand {
     public boolean execute() {
         return dataManager.delete(object);
     }
+    
+    @Override
+    public boolean undo() {
+        return dataManager.add(object);
+    }
 
     @Override
     public void setElement(Object object) {

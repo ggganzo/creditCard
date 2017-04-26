@@ -42,7 +42,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#createPerson" text="Add" />
                   <MenuItem mnemonicParsing="false" onAction="#updatePerson" text="Edit" />
-                  <MenuItem mnemonicParsing="false" text="Transactions" />
+                  <MenuItem mnemonicParsing="false" onAction="#openTransactionsForm" text="Transactions" />
             </items>
           </Menu>
         </menus>

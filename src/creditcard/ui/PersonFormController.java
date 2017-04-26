@@ -5,10 +5,13 @@ import databaseLayer.ElementState;
 import databaseLayer.contextLayer.ContextLayer;
 import financialcore.customer.Customer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class PersonFormController {
 	private Customer customer = new Customer();;
+	@FXML
+	private Label lbTitle;
 	@FXML
 	private TextField txtCustomerId;
 	@FXML
@@ -35,6 +38,7 @@ public class PersonFormController {
 
 	public void setCustomer(Customer customer){
 		this.customer = customer;
+		lbTitle.setText("Edit customer form");
 		loadData();
 	}
 	

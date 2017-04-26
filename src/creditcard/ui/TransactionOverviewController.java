@@ -114,4 +114,5 @@ public class TransactionOverviewController {
 		txtReport.setText(cons.getTransactionReport().getReport());
 		
 	}
+	
 }

@@ -134,6 +134,11 @@ public class PersonOverviewController {
 	private void createPerson() {
 		MainWindowService.Current().getMainScreenController().openCustomerCreate();
 	}
+	
+	@FXML
+	private void openTransactionsForm() {
+		MainWindowService.Current().getMainScreenController().openTransactionView();
+	}
 
 	private Customer getSelectedItem() {
 		try {

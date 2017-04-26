@@ -24,7 +24,7 @@
       <RowConstraints maxHeight="387.0" minHeight="10.0" prefHeight="337.0" />
    </rowConstraints>
    <children>
-      <Label prefHeight="34.0" prefWidth="338.0" text="Create new Customer form" GridPane.columnIndex="2">
+      <Label fx:id="lbTitle" prefHeight="34.0" prefWidth="338.0" text="Create new Customer form" GridPane.columnIndex="2">
          <font>
             <Font size="23.0" />
          </font>
